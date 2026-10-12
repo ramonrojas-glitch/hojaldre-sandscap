@@ -1,0 +1,920 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Hojaldre, panadería de autor: croissants, Danish, cinnamon rolls, mille-feuille and signature chocolate cake. Order for pickup on WhatsApp.">
+<meta property="og:title" content="Hojaldre Panadería">
+<meta property="og:description" content="Tonight's carta, one page at a time.">
+<meta property="og:image" content="https://hojaldre.sandscap.com.do/images/croissant.jpg">
+<meta property="og:url" content="https://hojaldre.sandscap.com.do/">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://hojaldre.sandscap.com.do/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%23120d0a%27/%3E%3Ctext x=%2732%27 y=%2745%27 text-anchor=%27middle%27 font-family=%27Georgia,serif%27 font-size=%2738%27 fill=%27%23d8b77e%27%3EH%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#120d0a">
+<title>Hojaldre Panadería</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&family=Karla:wght@400;500;600&display=swap">
+<style>
+/* Layout: sticky header (ES/EN + order bag); a chaptered menu book pinned over a blurred patisserie — left page plays the chapter's clip, right page lists its dishes; order band, full carta, table reservations, story */
+:root{
+  --ground:#120d0a; --paper:#1c1815; --paper-hi:#2a241f; --panel:#1a1410; --field:#120d0a;
+  --cream:#efe4d2; --cream-2:rgba(239,228,210,.8); --cream-3:rgba(239,228,210,.64);
+  --gold:#d8b77e; --gold-hi:#f0d29c; --line:rgba(216,183,126,.18); --ink:#1a120c; --err:#ff9b85;
+  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --sans:'Karla',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --hh:68px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-snap-type:y proximity}
+body{margin:0;background:var(--ground);color:var(--cream);font-family:var(--sans);font-size:16px;-webkit-font-smoothing:antialiased}
+a{color:var(--gold)}a:hover{color:var(--gold-hi)}
+a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
+button{font:inherit;color:inherit}
+.wrap{max-width:1240px;margin:0 auto}
+.eyebrow{margin:0;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;padding:13px 24px;border-radius:999px;font-size:15px;letter-spacing:.04em;cursor:pointer;border:0;min-height:44px}
+.pill.solid{background:var(--gold);color:var(--ink);font-weight:600}
+.pill.solid:hover{background:var(--gold-hi);color:var(--ink)}
+.pill.ghost{background:transparent;color:var(--gold);border:1px solid rgba(216,183,126,.55)}
+.pill.ghost:hover{border-color:var(--gold)}
+.pill.big{font-size:17px;padding:18px 40px;min-height:56px}
+.pill.wide{width:100%}
+.price{font-family:var(--serif);font-size:24px;color:var(--gold);font-variant-numeric:tabular-nums}
+.snap{position:absolute;left:0;width:1px;height:1px;scroll-snap-align:start;pointer-events:none}
+section[id]{scroll-margin-top:var(--hh)}
+
+/* header */
+header{position:sticky;top:0;z-index:40;height:var(--hh);padding:0 16px;display:flex;align-items:center;background:rgba(18,13,10,.84);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header .wrap{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{text-decoration:none;display:flex;align-items:baseline;gap:12px;min-width:0}
+.brand b{font-family:var(--serif);font-size:28px;font-weight:600;color:var(--gold)}
+.brand span{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--cream-3);white-space:nowrap}
+nav{display:flex;gap:28px;font-size:14px;letter-spacing:.06em}
+nav a{text-decoration:none;color:var(--cream-2)}
+.hright{display:flex;align-items:center;gap:10px}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px}
+.lang button{min-width:40px;min-height:36px;border:0;border-radius:999px;background:transparent;color:var(--cream-3);cursor:pointer;font-size:13px;letter-spacing:.08em}
+.lang button[aria-pressed="true"]{background:rgba(216,183,126,.18);color:var(--gold)}
+.bag{position:relative;display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:10px 16px;border-radius:999px;border:1px solid rgba(216,183,126,.5);background:transparent;color:var(--cream);cursor:pointer;font-size:14px;letter-spacing:.06em}
+.bag:hover{border-color:var(--gold)}
+.badge{min-width:22px;height:22px;padding:0 6px;border-radius:11px;background:var(--gold);color:var(--ink);font-size:12px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;font-variant-numeric:tabular-nums}
+.badge.bump{animation:bump .45s ease}
+@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.45)}100%{transform:scale(1)}}
+
+/* hero */
+.hero{padding:80px 16px 52px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:56px;align-items:end}
+.hero h1{margin:14px 0 0;font-family:var(--serif);font-weight:500;font-size:clamp(46px,7vw,86px);line-height:.98;letter-spacing:-.01em;text-wrap:balance}
+.hero h1 em{color:var(--gold)}
+.hero p.lede{margin:0 0 20px;font-size:17px;line-height:1.65;color:var(--cream-2);max-width:44ch}
+.cue{display:flex;align-items:center;gap:10px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--cream-3)}
+
+/* book stage */
+.track{position:relative;height:calc(100vh + 5600px)}
+.stage{position:sticky;top:var(--hh);height:calc(100vh - var(--hh));min-height:620px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:#0e0a08}
+.bg{position:absolute;inset:-30px;z-index:0;background:#0e0a08 url(images/bakery-bg.jpg) center 62%/cover no-repeat;filter:blur(5px) brightness(.56) saturate(1.05);transform:scale(1.08);will-change:transform}
+.vignette{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(120% 90% at 50% 45%,rgba(14,10,8,0) 40%,rgba(14,10,8,.75) 100%),linear-gradient(180deg,rgba(14,10,8,.55) 0%,rgba(14,10,8,0) 22%,rgba(14,10,8,0) 70%,rgba(14,10,8,.7) 100%)}
+.desk{position:relative;z-index:3;width:100%;padding:0 16px;display:flex;justify-content:center;align-items:center;gap:0}
+.persp{perspective:2400px;display:flex;justify-content:center;min-width:0}
+.book{position:relative;width:min(900px,calc(100vw - 180px),calc((100vh - var(--hh) - 150px) * 1.5625));aspect-ratio:1000/640;transform:translateX(-25%) rotateX(6deg);transform-style:preserve-3d;will-change:transform}
+.book .shadow{position:absolute;left:1%;right:1%;bottom:-8%;height:18%;background:radial-gradient(ellipse at 50% 40%,rgba(0,0,0,.85) 0%,rgba(0,0,0,0) 70%)}
+.left{position:absolute;left:0;top:0;width:50%;height:100%;transform:translateZ(.1px)}
+.stack{position:absolute;left:50%;top:0;width:50%;height:100%;transform-style:preserve-3d}
+.leaf{position:absolute;inset:0;transform-origin:left center;transform-style:preserve-3d;will-change:transform}
+.face{position:absolute;inset:0;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.front,[data-base]{transform:translateZ(.05px)}
+.back{transform:rotateY(180deg) translateZ(.05px)}
+.leaf,.face,.left{pointer-events:none}
+.face.on,.left.on{pointer-events:auto}
+.pg-r{border-radius:0 6px 6px 0;background:radial-gradient(130% 100% at 70% 15%,var(--paper-hi) 0%,var(--paper) 55%,#141110 100%);box-shadow:inset 22px 0 34px -20px rgba(0,0,0,.9)}
+.pg-l{border-radius:6px 0 0 6px;background:radial-gradient(130% 100% at 30% 15%,var(--paper-hi) 0%,var(--paper) 55%,#141110 100%);box-shadow:inset -22px 0 34px -20px rgba(0,0,0,.9)}
+.frame{position:absolute;inset:12px;border:1px solid rgba(216,183,126,.22);pointer-events:none}
+.shade{position:absolute;inset:0;pointer-events:none;opacity:0}
+.pg-r .shade{background:linear-gradient(90deg,rgba(0,0,0,.2),rgba(0,0,0,.95))}
+.pg-l .shade{background:linear-gradient(270deg,rgba(0,0,0,.2),rgba(0,0,0,.95))}
+.folio{margin:0;text-align:center;font-family:var(--serif);font-style:italic;font-size:14px;color:rgba(239,228,210,.5)}
+/* cover */
+.cover{border-radius:3px 8px 8px 3px;background:radial-gradient(rgba(255,235,200,.035) 1px,transparent 1.2px) 0 0/4px 4px,radial-gradient(120% 90% at 42% 30%,#3d2819 0%,#26180f 55%,#170e09 100%);box-shadow:inset 26px 0 30px -18px rgba(0,0,0,.85),inset -2px 0 0 rgba(255,220,170,.08),inset 0 0 60px rgba(0,0,0,.45)}
+.cover .cframe{position:absolute;inset:16px;border:1px solid rgba(216,183,126,.5);border-radius:2px;pointer-events:none}
+.cover .cframe::after{content:"";position:absolute;inset:6px;border:1px solid rgba(216,183,126,.22)}
+.cv{position:relative;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:10% 12%;text-align:center}
+.foil{background:linear-gradient(100deg,#a9844f 0%,#f3dca8 38%,#d9b77c 52%,#fff0c8 62%,#a87f46 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cv svg{width:min(34%,128px);height:auto;filter:drop-shadow(0 1px 0 rgba(0,0,0,.6))}
+.cv .wm{margin:6px 0 0;font-family:var(--serif);font-weight:600;font-size:clamp(30px,4.2vw,54px);letter-spacing:.24em;line-height:1;padding-left:.24em;text-shadow:0 1px 0 rgba(0,0,0,.25)}
+.cv .sub{margin:0;font-size:11px;letter-spacing:.42em;padding-left:.42em;text-transform:uppercase;color:rgba(216,183,126,.85)}
+.cv .rule{width:46%;height:1px;background:linear-gradient(90deg,rgba(216,183,126,0),rgba(216,183,126,.7),rgba(216,183,126,0))}
+.cv .menu{margin:0;font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,24px);color:var(--cream-2)}
+.open-btn{position:absolute;left:50%;bottom:9%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:10px 18px;border-radius:999px;border:1px solid rgba(216,183,126,.45);background:rgba(18,13,10,.35);color:var(--gold);cursor:pointer;font-size:12px;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap}
+.open-btn:hover{border-color:var(--gold)}
+.endpaper{border-radius:6px 0 0 6px;background:radial-gradient(rgba(216,183,126,.06) 1px,transparent 1.3px) 0 0/10px 10px,linear-gradient(90deg,#1d130c,#2a1b11);box-shadow:inset -22px 0 34px -20px rgba(0,0,0,.9)}
+/* left page: chapter + clip */
+.vp{position:relative;height:100%;padding:7% 8% 4%;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px}
+.vp .eyebrow{font-size:11px}
+.vp h2{margin:2px 0 0;font-family:var(--serif);font-weight:500;font-size:clamp(28px,3.4vw,46px);line-height:1.05;color:var(--gold)}
+.vp .note{margin:0;font-size:13px;color:var(--cream-3);letter-spacing:.04em}
+.vbox{flex:1;min-height:0;width:100%;position:relative}
+.vbox video,.mvid video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;-webkit-mask-image:radial-gradient(ellipse 64% 62% at 50% 50%,#000 58%,rgba(0,0,0,0) 100%);mask-image:radial-gradient(ellipse 64% 62% at 50% 50%,#000 58%,rgba(0,0,0,0) 100%)}
+/* right page: the dishes */
+.lp{position:relative;height:100%;padding:7% 8% 4%;display:flex;flex-direction:column;gap:8px}
+.lp .eyebrow{font-size:11px;letter-spacing:.24em}
+.lp h3{margin:0;font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(24px,2.6vw,34px);line-height:1.05}
+.tagline{align-self:flex-start;margin:2px 0 0;padding:4px 10px;border-radius:999px;border:1px solid rgba(216,183,126,.35);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.items{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;flex:1;min-height:0;overflow-y:auto;scrollbar-width:thin}
+.it{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid rgba(216,183,126,.1)}
+.it:last-child{border-bottom:0}
+.it-open{grid-column:1;display:flex;align-items:baseline;gap:8px;min-width:0;padding:2px 0;border:0;background:transparent;cursor:pointer;text-align:left}
+.it-open .nm{font-family:var(--serif);font-size:19px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.it-open:hover .nm{color:var(--gold-hi)}
+.it-open .lead{flex:1;min-width:12px;border-bottom:1px dotted rgba(216,183,126,.35);transform:translateY(-4px)}
+.it-open .pr{font-family:var(--serif);font-size:18px;color:var(--gold);font-variant-numeric:tabular-nums;white-space:nowrap}
+.it .ds{grid-column:1;margin:1px 0 0;font-size:12.5px;line-height:1.45;color:var(--cream-3);display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.plus{grid-column:2;grid-row:1 / span 2;width:38px;height:38px;border-radius:50%;border:1px solid rgba(216,183,126,.5);background:transparent;color:var(--gold);cursor:pointer;font-size:20px;line-height:1;display:flex;align-items:center;justify-content:center}
+.plus:hover{background:rgba(216,183,126,.14)}
+.plus.done{background:var(--gold);color:var(--ink)}
+.tag{display:inline-block;margin-left:6px;padding:1px 6px;border-radius:4px;border:1px solid rgba(216,183,126,.35);font-family:var(--sans);font-size:10px;letter-spacing:.1em;color:var(--gold);vertical-align:middle;white-space:nowrap}
+.tag.hoy{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.mvid{display:none;position:relative;height:150px;margin:-2px -4px 4px;flex:none}
+
+/* chapter tabs */
+.tabs{display:flex;flex-direction:column;gap:6px;margin-left:-2px;position:relative;z-index:4}
+.tab{min-height:38px;padding:8px 16px 8px 14px;border:1px solid rgba(216,183,126,.28);border-left:0;border-radius:0 10px 10px 0;background:rgba(28,24,21,.92);color:var(--cream-3);cursor:pointer;font-size:12.5px;letter-spacing:.08em;text-align:left;white-space:nowrap;transition:background .25s,color .25s,padding .25s}
+.tab:hover{color:var(--cream)}
+.tab[aria-current="true"]{background:var(--gold);color:var(--ink);border-color:var(--gold);padding-left:20px;font-weight:600}
+.controls{position:relative;z-index:4;display:flex;align-items:center;gap:16px;padding:0 16px;flex-wrap:wrap;justify-content:center}
+.ctl{width:44px;height:44px;border-radius:50%;border:1px solid rgba(216,183,126,.45);background:rgba(18,13,10,.65);color:var(--gold);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.ctl:hover{border-color:var(--gold)}
+.counter{margin:0;min-width:200px;text-align:center;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-2)}
+.fullmenu{font-size:13px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;padding:12px 6px}
+
+/* order band */
+.oband{padding:64px 16px;border-top:1px solid var(--line);background:radial-gradient(60% 140% at 50% 0%,rgba(216,183,126,.10) 0%,rgba(216,183,126,0) 70%)}
+.oband .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px}
+.oband h2{margin:8px 0 6px;font-family:var(--serif);font-weight:500;font-size:clamp(32px,4vw,48px);line-height:1.05}
+.oband h2 em{color:var(--gold)}
+.oband p{margin:0;color:var(--cream-2)}
+
+/* full carta */
+.carta{padding:90px 16px;border-top:1px solid var(--line)}
+.carta .head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:20px;margin-bottom:24px}
+.carta h2{margin:10px 0 0;font-family:var(--serif);font-weight:500;font-size:clamp(38px,5vw,60px);line-height:1}
+.chips{position:sticky;top:var(--hh);z-index:20;display:flex;gap:8px;overflow-x:auto;padding:12px 0;margin-bottom:12px;background:linear-gradient(180deg,var(--ground) 80%,rgba(18,13,10,0));scrollbar-width:none}
+.chips a{flex:none;text-decoration:none;padding:9px 16px;border-radius:999px;border:1px solid var(--line);color:var(--cream-2);font-size:14px;white-space:nowrap}
+.chips a:hover{border-color:var(--gold);color:var(--gold)}
+.cgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 64px}
+.cat{scroll-margin-top:calc(var(--hh) + 64px);padding-top:22px}
+.cat h3{margin:0 0 4px;font-family:var(--serif);font-style:italic;font-weight:500;font-size:32px}
+.cat .note{margin:0 0 10px;font-size:13px;color:var(--cream-3)}
+.cat .items{overflow:visible}
+.cat .it-open .nm{white-space:normal}
+
+/* reservations + story */
+.reserve{padding:90px 16px;border-top:1px solid var(--line)}
+.reserve .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:64px;align-items:start}
+.reserve h2,.story h2{margin:10px 0 14px;font-family:var(--serif);font-weight:500;font-size:clamp(36px,4.5vw,54px);line-height:1.04;text-wrap:balance}
+.reserve h2 em{color:var(--gold)}
+.reserve p.body{margin:0;font-size:17px;line-height:1.65;color:var(--cream-2);max-width:44ch}
+.form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 16px}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field.full{grid-column:1 / -1}
+.field label,.fieldset legend{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--cream-3)}
+.field input,.field select,.field textarea{width:100%;min-height:46px;padding:11px 13px;border-radius:10px;border:1px solid rgba(216,183,126,.32);background:var(--field);color:var(--cream);font:inherit;font-size:15px}
+.field textarea{min-height:76px;resize:vertical}
+.field .err{display:none;font-size:13px;color:var(--err)}
+.field.bad input,.field.bad select{border-color:var(--err)}
+.field.bad .err{display:block}
+.fieldset{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.radios{display:flex;flex-wrap:wrap;gap:8px}
+.radios label{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:8px 14px;border-radius:999px;border:1px solid rgba(216,183,126,.32);cursor:pointer;font-size:14px;letter-spacing:0;text-transform:none;color:var(--cream-2)}
+.radios input{accent-color:#d8b77e;margin:0}
+.radios label:has(input:checked){border-color:var(--gold);color:var(--cream);background:rgba(216,183,126,.12)}
+.story{padding:100px 16px;border-top:1px solid var(--line)}
+.story .wrap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:72px;align-items:start}
+.story .q{margin:18px 0 0;font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(32px,4vw,48px);line-height:1.12;text-wrap:balance}
+.story p.body{margin:30px 0 26px;font-size:17px;line-height:1.7;color:var(--cream-2);max-width:46ch}
+dl{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);gap:14px 28px;font-size:15px}
+dt{letter-spacing:.18em;text-transform:uppercase;font-size:11px;color:var(--cream-3);padding-top:3px}
+dd{margin:0}
+footer{padding:36px 16px 44px;border-top:1px solid var(--line)}
+footer .wrap{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:16px;font-size:13px;color:var(--cream-3)}
+footer b{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--gold)}
+
+/* item sheet */
+.scrim{position:fixed;inset:0;z-index:60;background:rgba(8,6,5,.62)}
+.sheet{position:fixed;z-index:62;left:50%;top:50%;width:min(520px,calc(100% - 32px));max-height:calc(100vh - 48px);overflow-y:auto;transform:translate(-50%,-50%);background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.sheet .simg{position:relative;aspect-ratio:16/10;background:#0e0a08;overflow:hidden;border-radius:14px 14px 0 0}
+.sheet .simg img{width:100%;height:100%;object-fit:cover}
+.sheet .sbody{padding:22px 24px 24px;display:flex;flex-direction:column;gap:16px}
+.sheet h3{margin:0;font-family:var(--serif);font-weight:500;font-size:32px;line-height:1.05}
+.sheet p.sd{margin:0;color:var(--cream-2);line-height:1.6}
+.sheet .x{position:absolute;top:12px;right:12px;z-index:2;background:rgba(18,13,10,.75)}
+.sfoot{display:flex;align-items:center;gap:14px}
+.qty{display:flex;align-items:center;gap:6px}
+.qty button{width:40px;height:40px;border-radius:50%;border:1px solid rgba(216,183,126,.4);background:transparent;color:var(--gold);cursor:pointer;font-size:18px;line-height:1}
+.qty span{min-width:24px;text-align:center;font-variant-numeric:tabular-nums}
+.x{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--cream);display:flex;align-items:center;justify-content:center;cursor:pointer}
+
+/* order drawer */
+.drawer{position:fixed;top:0;right:0;bottom:0;z-index:61;width:min(440px,100%);background:var(--panel);border-left:1px solid var(--line);display:flex;flex-direction:column;transform:translateX(105%);transition:transform .35s ease;padding-bottom:env(safe-area-inset-bottom,0px)}
+.drawer.open{transform:none}
+.dhead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:20px 22px 16px;border-bottom:1px solid var(--line)}
+.dhead h2{margin:0;font-family:var(--serif);font-weight:500;font-size:30px}
+.dview{flex:1;min-height:0;display:flex;flex-direction:column}
+.dscroll{flex:1;min-height:0;overflow-y:auto;padding:6px 22px 18px}
+.lines{list-style:none;margin:0;padding:0}
+.line{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid rgba(216,183,126,.1)}
+.line .ln{font-family:var(--serif);font-size:20px;line-height:1.1}
+.line .lo{font-size:13px;color:var(--cream-3);margin-top:3px}
+.line .lp{font-size:13px;color:var(--cream-2);margin-top:4px;font-variant-numeric:tabular-nums}
+.empty{margin:0;padding:34px 0;color:var(--cream-3);line-height:1.6}
+.dfoot{padding:16px 22px 22px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
+.sum{display:flex;justify-content:space-between;align-items:baseline;font-size:15px;color:var(--cream-2);font-variant-numeric:tabular-nums}
+.sum.total{color:var(--cream);font-size:16px}
+.sum.total .price{font-size:28px}
+.back-link{align-self:flex-start;border:0;background:transparent;color:var(--gold);cursor:pointer;padding:10px 0;font-size:14px}
+.fine{margin:0;font-size:13px;color:var(--cream-3);line-height:1.5}
+.dscroll .form{grid-template-columns:minmax(0,1fr);padding-top:12px}
+.sent{display:none;padding:12px 14px;border-radius:10px;border:1px solid rgba(216,183,126,.35);font-size:14px;line-height:1.5;color:var(--cream-2)}
+.sent.show{display:block}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));z-index:70;transform:translate(-50%,calc(100% + 60px));visibility:hidden;padding:12px 20px;border-radius:999px;background:var(--cream);color:var(--ink);font-size:14px;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,.45);transition:transform .3s ease,visibility .3s;max-width:calc(100% - 32px)}
+.toast.show{transform:translate(-50%,0);visibility:visible}
+
+@media (max-width:860px){
+  :root{--hh:60px}
+  nav,.brand span{display:none}
+  .bag .bl{display:none}
+  .hero{padding:52px 16px 40px}
+  .hero .wrap,.story .wrap,.reserve .wrap{grid-template-columns:minmax(0,1fr);gap:28px}
+  .bg{background-image:url(images/bakery-bg-tall.jpg);background-position:center 70%}
+  .desk{flex-direction:column-reverse;gap:12px;padding:0}
+  .tabs{flex-direction:row;overflow-x:auto;width:100%;padding:0 16px;margin:0;scrollbar-width:none}
+  .tab{flex:none;border-left:1px solid rgba(216,183,126,.28);border-radius:999px;padding:8px 14px}
+  .tab[aria-current="true"]{padding-left:14px}
+  .left{display:none}
+  .stack{left:0;width:100%}
+  .book{width:min(380px,calc(100vw - 32px),calc((100vh - var(--hh) - 190px) * .66));aspect-ratio:500/760}
+  .mvid{display:block;height:118px}
+  .controls .counter{display:none}
+  .it{min-height:44px}
+  .lp{padding:6% 7% 4%}
+  .it .ds{display:none}
+  .it{padding:5px 0}
+  .counter{min-width:0;flex:1}
+  .cgrid{grid-template-columns:minmax(0,1fr)}
+  .form{grid-template-columns:minmax(0,1fr)}
+  .sheet{top:auto;bottom:0;transform:translate(-50%,0);border-radius:14px 14px 0 0;width:100%;max-height:88vh}
+}
+@media (max-height:700px) and (max-width:860px){.mvid{height:90px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.drawer,.toast,.tab{transition:none}.badge.bump{animation:none}}
+</style>
+</head>
+<body>
+
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="#top"><b>Hojaldre</b><span data-i="tag">Panadería · Café</span></a>
+    <nav aria-label="Main">
+      <a href="#menu" data-i="navMenu">Menú</a>
+      <a href="#carta" data-i="navCarta">Carta completa</a>
+      <a href="#reservar" data-i="navReserve">Reservar</a>
+      <a href="#nosotros" data-i="navAbout">Nosotros</a>
+    </nav>
+    <div class="hright">
+      <div class="lang" role="group" aria-label="Idioma / Language">
+        <button type="button" data-lang="es" aria-pressed="true">ES</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button class="bag" type="button" id="openCart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <span class="bl" data-i="bag">Pedido</span><span class="badge" id="badge">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow" data-i="heroEyebrow">Desayunos · Café · Panes · Repostería</p>
+      <h1 data-ih="heroH1">La carta pasa <em>sus propias</em> páginas.</h1>
+    </div>
+    <div>
+      <p class="lede" data-i="heroLede">Todo hecho en casa, cada mañana. Desliza para pasar las páginas de la carta y pide a domicilio desde cualquier capítulo.</p>
+      <div class="cue"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M6 13l6 6 6-6"/></svg><span data-i="cue">Desliza para abrir la carta</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="track" id="menu" aria-label="Menu">
+  <div class="snap" style="top:0"></div><div class="snap" style="top:700px"></div><div class="snap" style="top:1400px"></div><div class="snap" style="top:2100px"></div>
+  <div class="snap" style="top:2800px"></div><div class="snap" style="top:3500px"></div><div class="snap" style="top:4200px"></div><div class="snap" style="top:4900px"></div><div class="snap" style="top:5600px"></div>
+  <div class="stage">
+    <div class="bg" id="bg" aria-hidden="true"></div>
+    <div class="vignette" aria-hidden="true"></div>
+    <div class="desk">
+      <div class="persp"><div class="book" id="book"></div></div>
+      <div class="tabs" id="tabs" role="tablist" aria-label="Capítulos"></div>
+    </div>
+    <div class="controls">
+      <button class="ctl" type="button" id="prev" data-ia="prev" aria-label="Capítulo anterior"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+      <p class="counter" id="counter" aria-live="polite"></p>
+      <button class="ctl" type="button" id="next" data-ia="next" aria-label="Capítulo siguiente"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+      <a class="fullmenu" href="#carta" data-i="seeAll">Ver carta completa ↓</a>
+    </div>
+  </div>
+</section>
+
+<section class="oband" id="pedido">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow" data-i="obEyebrow">Tu pedido</p>
+      <h2 id="obTitle"></h2>
+      <p id="obSum"></p>
+    </div>
+    <button class="pill solid big" type="button" id="orderBtn"></button>
+  </div>
+</section>
+
+<section class="carta" id="carta">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="eyebrow" data-i="cartaEyebrow">La carta completa</p><h2 data-i="cartaH2">Todo en una sola vista</h2></div>
+      <p class="fine" data-i="cartaNote" style="max-width:40ch">Precios en pesos dominicanos, ITBIS incluido. V vegano · VEG vegetariano · SG sin gluten.</p>
+    </div>
+    <div class="chips" id="chips"></div>
+    <div class="cgrid" id="cgrid"></div>
+  </div>
+</section>
+
+<section class="reserve" id="reservar">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow" data-i="resEyebrow">Comer aquí</p>
+      <h2 data-ih="resH2">Reserva una <em>mesa</em>.</h2>
+      <p class="body" data-i="resBody">Para desayunos largos, cumpleaños o una reunión con café. Te confirmamos por WhatsApp.</p>
+    </div>
+    <form class="form" id="resForm" novalidate>
+      <div class="field"><label for="rDate" data-i="fDate">Fecha</label><input id="rDate" type="date" required><span class="err" data-i="eReq">Este campo es necesario.</span></div>
+      <div class="field"><label for="rTime" data-i="fTime">Hora</label><input id="rTime" type="time" required><span class="err" data-i="eReq">Este campo es necesario.</span></div>
+      <div class="field"><label for="rPeople" data-i="fPeople">Personas</label><select id="rPeople"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8+</option></select></div>
+      <div class="field"><label for="rName" data-i="fName">Nombre</label><input id="rName" autocomplete="name" required><span class="err" data-i="eReq">Este campo es necesario.</span></div>
+      <div class="field full"><label for="rPhone" data-i="fPhone">Teléfono</label><input id="rPhone" type="tel" autocomplete="tel" inputmode="tel" required><span class="err" data-i="ePhone">Escribe un número de teléfono válido.</span></div>
+      <div class="field full"><label for="rNote" data-i="fNote">Nota (opcional)</label><textarea id="rNote"></textarea></div>
+      <div class="field full"><a class="pill solid" id="resSend" href="#" target="_blank" rel="noopener" data-i="resSend">Pedir reserva por WhatsApp</a></div>
+    </form>
+  </div>
+</section>
+
+<section class="story" id="nosotros">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow" data-i="abEyebrow">Nosotros</p>
+      <p class="q" data-i="abQuote">Los hornos se prenden antes del amanecer. La puerta abre cuando los croissants están listos.</p>
+    </div>
+    <div>
+      <p class="body" data-i="abBody">[Un párrafo corto sobre los panaderos, la harina y la mantequilla que usan, y dónde queda el local.] Todo se hace en casa en tandas pequeñas, así que lo mejor se acaba temprano.</p>
+      <dl>
+        <dt data-i="dHours">Horario</dt><dd>[HORARIO]</dd>
+        <dt data-i="dBreakfast">Desayunos</dt><dd data-i="dBreakfastV">Hasta las 12:00 m.</dd>
+        <dt data-i="dAddress">Dirección</dt><dd>[DIRECCIÓN]</dd>
+        <dt>WhatsApp</dt><dd>[NÚMERO]</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap"><b>Hojaldre</b><span>© 2026 Hojaldre · <span data-i="tag">Panadería · Café</span> · [INSTAGRAM]</span></div>
+</footer>
+
+<div class="scrim" id="scrim" hidden></div>
+
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sName" hidden>
+  <button class="x" type="button" id="sClose" data-ia="close" aria-label="Cerrar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <div class="simg" id="sImgBox"><img id="sImg" alt=""></div>
+  <div class="sbody">
+    <div><h3 id="sName"></h3><p class="price" id="sPrice" style="margin:6px 0 0"></p></div>
+    <p class="sd" id="sDesc"></p>
+    <div id="sOpts" style="display:flex;flex-direction:column;gap:14px"></div>
+    <div class="sfoot">
+      <div class="qty"><button type="button" id="sMinus" data-ia="less" aria-label="Menos">−</button><span id="sQty">1</span><button type="button" id="sPlus" data-ia="more" aria-label="Más">+</button></div>
+      <button class="pill solid" type="button" id="sAdd" style="flex:1"></button>
+    </div>
+  </div>
+</div>
+
+<aside class="drawer" id="drawer" aria-labelledby="dTitle" aria-hidden="true">
+  <div class="dhead">
+    <h2 id="dTitle" data-i="dTitle">Tu pedido</h2>
+    <button class="x" type="button" id="closeCart" data-ia="close" aria-label="Cerrar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="dview" id="vCart">
+    <div class="dscroll">
+      <ul class="lines" id="lines"></ul>
+      <p class="empty" id="empty" data-i="empty">Todavía no has agregado nada. Pasa las páginas de la carta y toca “+”.</p>
+    </div>
+    <div class="dfoot">
+      <div class="sum"><span data-i="subtotal">Subtotal</span><span id="subA"></span></div>
+      <p class="fine" data-i="feeLater">El envío se calcula según tu zona en el próximo paso.</p>
+      <button class="pill solid wide" type="button" id="toCheckout" data-i="toCheckout">Continuar con la entrega</button>
+    </div>
+  </div>
+  <div class="dview" id="vCheck" hidden>
+    <div class="dscroll">
+      <button class="back-link" type="button" id="backCart" data-i="backCart">← Volver al pedido</button>
+      <form class="form" id="delForm" novalidate>
+        <div class="field"><label for="dName" data-i="fName">Nombre</label><input id="dName" autocomplete="name" required><span class="err" data-i="eReq">Este campo es necesario.</span></div>
+        <div class="field"><label for="dPhone" data-i="fPhone">Teléfono</label><input id="dPhone" type="tel" autocomplete="tel" inputmode="tel" required><span class="err" data-i="ePhone">Escribe un número de teléfono válido.</span></div>
+        <div class="field"><label for="dZone" data-i="fZone">Zona</label><select id="dZone" required></select><span class="err" data-i="eZone">Elige tu zona.</span></div>
+        <div class="field"><label for="dAddr" data-i="fAddr">Dirección</label><input id="dAddr" autocomplete="street-address" required><span class="err" data-i="eReq">Este campo es necesario.</span></div>
+        <div class="field"><label for="dRef" data-i="fRef">Referencia (opcional)</label><input id="dRef"></div>
+        <fieldset class="fieldset"><legend data-i="fWhen">¿Cuándo?</legend>
+          <div class="radios" id="whenR">
+            <label><input type="radio" name="when" value="asap" checked><span data-i="asap">Lo antes posible</span></label>
+            <label><input type="radio" name="when" value="later"><span data-i="later">Programar</span></label>
+          </div>
+        </fieldset>
+        <div class="field" id="laterBox" hidden><label for="dTime" data-i="fTime">Hora</label><input id="dTime" type="time"><span class="err" data-i="eReq">Este campo es necesario.</span></div>
+        <fieldset class="fieldset"><legend data-i="fPay">Pago</legend>
+          <div class="radios">
+            <label><input type="radio" name="pay" value="cash" checked><span data-i="payCash">Efectivo</span></label>
+            <label><input type="radio" name="pay" value="card"><span data-i="payCard">Tarjeta al recibir</span></label>
+            <label><input type="radio" name="pay" value="transfer"><span data-i="payTransfer">Transferencia</span></label>
+          </div>
+        </fieldset>
+        <div class="field"><label for="dNote" data-i="fNoteOrder">Nota para la cocina (opcional)</label><textarea id="dNote"></textarea></div>
+      </form>
+      <p class="sent" id="sent"></p>
+    </div>
+    <div class="dfoot">
+      <div class="sum"><span data-i="subtotal">Subtotal</span><span id="subB"></span></div>
+      <div class="sum"><span data-i="delivery">Envío</span><span id="fee"></span></div>
+      <div class="sum total"><span data-i="total">Total</span><span class="price" id="tot"></span></div>
+      <a class="pill solid wide" id="sendOrder" href="#" target="_blank" rel="noopener" data-i="sendOrder">Enviar pedido por WhatsApp</a>
+      <button class="pill ghost wide" type="button" id="copyOrder" data-i="copyOrder">Copiar pedido</button>
+    </div>
+  </div>
+</aside>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  /* ======================= content (example prices — replace with the bakery's real ones) ======================= */
+  var WHATSAPP = ''; // bakery number, international format, e.g. '18095550000'
+  var I = {
+    croissant: { p: 175, img: 'images/croissant.jpg', es: ['Croissant de mantequilla', 'Laminado a mano y horneado al amanecer, con un brillo de miel.'], en: ['All-butter croissant', 'Hand-laminated, baked at dawn, finished with a honey glaze.'] },
+    danish: { p: 225, img: 'images/danish.jpg', es: ['Danish de frutos rojos', 'Crema de vainilla en masa hojaldrada, frambuesas, arándanos y azúcar glas.'], en: ['Berry Danish', 'Vanilla custard in flaky dough, raspberries, blueberries and powdered sugar.'] },
+    cinnamon: { p: 250, img: 'images/cinnamon-roll.jpg', tags: ['hoy'], es: ['Rol de canela', 'Espiral de azúcar morena con glaseado tibio de vainilla y avellanas tostadas.'], en: ['Cinnamon roll', 'Brown-sugar swirl, warm vanilla glaze and toasted hazelnuts.'] },
+    millefeuille: { p: 295, img: 'images/mille-feuille.jpg', es: ['Milhojas de fresa', 'Hojaldre caramelizado, crema de vainilla y fresas frescas.'], en: ['Strawberry mille-feuille', 'Caramelized puff pastry, vanilla cream and fresh strawberries.'] },
+    cake: { p: 325, img: 'images/chocolate-cake.jpg', es: ['Pastel de chocolate', 'Por porción. Glaseado espejo sobre base de praliné de avellana.'], en: ['Dark chocolate cake', 'By the slice. Mirror glaze over a hazelnut praline base.'] },
+
+    benedict: { p: 495, img: 'images/ch-breakfast.jpg', es: ['Huevos benedictinos', 'Huevos pochados, jamón de pierna y holandesa sobre brioche de la casa.'], en: ['Eggs benedict', 'Poached eggs, ham and hollandaise on house brioche.'] },
+    avotoast: { p: 450, tags: ['veg'], opts: ['egg'], es: ['Tostada de aguacate', 'Aguacate, tomate cherry y brotes sobre masa madre.'], en: ['Avocado toast', 'Avocado, cherry tomatoes and sprouts on sourdough.'] },
+    frenchtoast: { p: 425, tags: ['veg'], es: ['Tostada francesa', 'Brioche dorado, frutos rojos, crema batida y sirope de arce.'], en: ['French toast', 'Golden brioche, berries, whipped cream and maple syrup.'] },
+    mangu: { p: 375, tags: ['sg'], opts: ['eggstyle'], es: ['Mangú con los tres golpes', 'Plátano verde majado, salami, queso frito, huevo y cebolla encurtida.'], en: ['Mangú with “los tres golpes”', 'Mashed green plantain, salami, fried cheese, egg and pickled onion.'] },
+    omelette: { p: 395, es: ['Omelette de la casa', 'Jamón, queso gouda y vegetales salteados, con pan de masa madre.'], en: ['House omelette', 'Ham, gouda and sautéed vegetables, with sourdough toast.'] },
+    combo: { p: 550, opts: ['combocoffee', 'combojuice'], es: ['Combo mañanero', 'Croissant o pan dulce del día + café + jugo pequeño.'], en: ['Morning combo', 'Croissant or pastry of the day + coffee + small juice.'] },
+
+    espresso: { p: 125, opts: ['shot'], es: ['Espresso', 'Café dominicano de altura, extracción corta.'], en: ['Espresso', 'Dominican highland coffee, short pull.'] },
+    cortado: { p: 150, opts: ['milk'], es: ['Cortado', 'Espresso con un toque de leche vaporizada.'], en: ['Cortado', 'Espresso with a splash of steamed milk.'] },
+    cappuccino: { p: 195, img: 'images/ch-coffee.jpg', opts: ['size', 'milk'], es: ['Capuchino', 'Espresso, leche vaporizada y espuma sedosa.'], en: ['Cappuccino', 'Espresso, steamed milk and silky foam.'] },
+    latte: { p: 210, opts: ['size', 'milk'], es: ['Latte', 'Más leche, más suave. Pide vainilla o caramelo.'], en: ['Latte', 'More milk, softer. Ask for vanilla or caramel.'] },
+    cafeconleche: { p: 175, opts: ['milk'], es: ['Café con leche', 'Como en casa, colado y con leche caliente.'], en: ['Café con leche', 'Like at home: brewed coffee with hot milk.'] },
+    coldbrew: { p: 225, tags: ['v'], opts: ['size'], es: ['Cold brew', 'Infusionado en frío por 18 horas, servido con hielo.'], en: ['Cold brew', 'Steeped cold for 18 hours, served over ice.'] },
+
+    painchoc: { p: 195, es: ['Pain au chocolat', 'Hojaldre de mantequilla con dos barras de chocolate oscuro.'], en: ['Pain au chocolat', 'Butter pastry with two bars of dark chocolate.'] },
+    almond: { p: 245, es: ['Croissant de almendras', 'Relleno de crema de almendras y cubierto de almendras tostadas.'], en: ['Almond croissant', 'Filled with almond cream, topped with toasted almonds.'] },
+    pastelito: { p: 125, es: ['Pastelito de guayaba y queso', 'Hojaldre crujiente con guayaba y queso crema.'], en: ['Guava & cheese pastelito', 'Crisp puff pastry with guava and cream cheese.'] },
+
+    sourdough: { p: 395, img: 'images/ch-bread.jpg', tags: ['v'], es: ['Hogaza de masa madre', 'Fermentación de 36 horas, corteza profunda.'], en: ['Sourdough loaf', '36-hour ferment, deep crust.'] },
+    baguette: { p: 150, tags: ['v'], es: ['Baguette', 'Crujiente por fuera, alveolada por dentro.'], en: ['Baguette', 'Crackly outside, open crumb inside.'] },
+    pandeagua: { p: 120, tags: ['v'], es: ['Pan de agua (6)', 'El de siempre, recién salido del horno.'], en: ['Pan de agua (6)', 'The Dominican classic, fresh from the oven.'] },
+    brioche: { p: 325, es: ['Brioche de molde', 'Mantequilla y huevo, ideal para tostadas francesas.'], en: ['Brioche loaf', 'Butter and egg, perfect for French toast.'] },
+    sobao: { p: 140, es: ['Pan sobao (4)', 'Suave y ligeramente dulce.'], en: ['Pan sobao (4)', 'Soft and lightly sweet.'] },
+    seeded: { p: 345, tags: ['v'], es: ['Integral de semillas', 'Trigo integral, linaza, girasol y avena.'], en: ['Seeded whole wheat', 'Whole wheat, flax, sunflower and oats.'] },
+
+    croque: { p: 425, img: 'images/ch-savory.jpg', es: ['Croque monsieur', 'Jamón, gruyère y bechamel gratinada en pan de molde.'], en: ['Croque monsieur', 'Ham, gruyère and broiled béchamel on house bread.'] },
+    quiche: { p: 350, es: ['Quiche lorraine', 'Por porción. Tocineta, cebolla caramelizada y queso.'], en: ['Quiche lorraine', 'By the slice. Bacon, caramelized onion and cheese.'] },
+    turkeybrie: { p: 475, es: ['Baguette de pavo y brie', 'Pavo ahumado, brie, rúcula y mostaza de miel.'], en: ['Turkey & brie baguette', 'Smoked turkey, brie, arugula and honey mustard.'] },
+    caprese: { p: 425, tags: ['veg'], es: ['Focaccia caprese', 'Mozzarella fresca, tomate, albahaca y aceite de oliva.'], en: ['Caprese focaccia', 'Fresh mozzarella, tomato, basil and olive oil.'] },
+    empanada: { p: 150, es: ['Empanada de pollo', 'Horneada, masa de mantequilla, pollo guisado.'], en: ['Chicken empanada', 'Baked butter pastry, braised chicken.'] },
+    salad: { p: 450, tags: ['veg', 'sg'], es: ['Ensalada de la casa', 'Verdes, queso de cabra, nueces caramelizadas y vinagreta de chinola.'], en: ['House salad', 'Greens, goat cheese, candied walnuts and chinola vinaigrette.'] },
+
+    chinola: { p: 175, img: 'images/ch-drinks.jpg', tags: ['v'], opts: ['jsize', 'sugar'], es: ['Jugo de chinola', 'Recién exprimido.'], en: ['Chinola juice', 'Fresh passion fruit, made to order.'] },
+    naranja: { p: 195, tags: ['v'], opts: ['jsize'], es: ['Jugo de naranja', 'Naranja exprimida al momento.'], en: ['Orange juice', 'Freshly squeezed naranja.'] },
+    limonada: { p: 225, tags: ['v'], es: ['Limonada de coco', 'Limón, crema de coco y hielo frappé.'], en: ['Coconut lemonade', 'Lime, coconut cream and crushed ice.'] },
+    morir: { p: 225, es: ['Morir soñando', 'Jugo de naranja con leche bien fría, el clásico dominicano.'], en: ['Morir soñando', 'Orange juice and ice-cold milk, the Dominican classic.'] },
+    batida: { p: 245, opts: ['fruit'], es: ['Batida', 'Con leche y hielo. Elige la fruta.'], en: ['Batida (shake)', 'With milk and ice. Pick the fruit.'] },
+    chocolate: { p: 225, opts: ['milk'], es: ['Chocolate caliente', 'Cacao dominicano, canela y un toque de vainilla.'], en: ['Hot chocolate', 'Dominican cacao, cinnamon and a touch of vanilla.'] },
+
+    tresleches: { p: 275, es: ['Tres leches', 'Bizcocho empapado en tres leches con merengue tostado.'], en: ['Tres leches', 'Sponge soaked in three milks, toasted meringue.'] },
+    cheesecake: { p: 295, es: ['Cheesecake de chinola', 'Base de galleta, crema de queso y coulis de chinola.'], en: ['Chinola cheesecake', 'Biscuit base, cream cheese and passion fruit coulis.'] },
+    flan: { p: 225, tags: ['sg'], es: ['Flan de caramelo', 'Cremoso, con caramelo oscuro.'], en: ['Caramel flan', 'Creamy, with dark caramel.'] },
+    bizcocho: { p: 2800, es: ['Bizcocho dominicano', 'Entero, por encargo con 48 horas. Desde 1 libra.'], en: ['Dominican cake', 'Whole, order 48 hours ahead. From 1 lb.'] }
+  };
+  var OPTS = {
+    milk: { es: 'Leche', en: 'Milk', v: [['Entera', 'Whole', 0], ['Deslactosada', 'Lactose-free', 0], ['Avena', 'Oat', 45], ['Almendra', 'Almond', 45]] },
+    size: { es: 'Tamaño', en: 'Size', v: [['12 oz', '12 oz', 0], ['16 oz', '16 oz', 40]] },
+    shot: { es: 'Carga', en: 'Shot', v: [['Sencillo', 'Single', 0], ['Doble', 'Double', 50]] },
+    jsize: { es: 'Tamaño', en: 'Size', v: [['12 oz', '12 oz', 0], ['16 oz', '16 oz', 60]] },
+    sugar: { es: 'Azúcar', en: 'Sugar', v: [['Con azúcar', 'With sugar', 0], ['Sin azúcar', 'No sugar', 0]] },
+    fruit: { es: 'Fruta', en: 'Fruit', v: [['Lechosa', 'Lechosa (papaya)', 0], ['Guineo', 'Guineo (banana)', 0], ['Fresa', 'Fresa (strawberry)', 0]] },
+    egg: { es: 'Extra', en: 'Extra', v: [['Sin huevo', 'No egg', 0], ['Con huevo pochado', 'Add a poached egg', 75]] },
+    eggstyle: { es: 'Huevo', en: 'Egg', v: [['Frito', 'Fried', 0], ['Revuelto', 'Scrambled', 0]] },
+    combocoffee: { es: 'Café', en: 'Coffee', v: [['Café con leche', 'Café con leche', 0], ['Capuchino', 'Cappuccino', 0], ['Americano', 'Americano', 0]] },
+    combojuice: { es: 'Jugo', en: 'Juice', v: [['Chinola', 'Chinola', 0], ['Naranja', 'Naranja', 0]] }
+  };
+  var CH = [
+    { id: 'firma', clip: 'cinnamon-roll', es: ['Firma', 'La firma de la casa', 'Lo que más se pide'], en: ['Signatures', 'House signatures', 'What people order most'], items: ['croissant', 'danish', 'cinnamon', 'millefeuille', 'cake'] },
+    { id: 'desayunos', clip: 'breakfast', es: ['Desayunos', 'Desayunos', 'Se sirven hasta las 12:00 m.'], en: ['Breakfast', 'Breakfast', 'Served until 12:00 pm'], items: ['benedict', 'avotoast', 'frenchtoast', 'mangu', 'omelette', 'combo'] },
+    { id: 'cafe', clip: 'coffee', es: ['Café', 'Café', 'Café dominicano de altura'], en: ['Coffee', 'Coffee', 'Dominican highland coffee'], items: ['espresso', 'cortado', 'cappuccino', 'latte', 'cafeconleche', 'coldbrew'] },
+    { id: 'viennoiserie', clip: 'croissant', es: ['Viennoiserie', 'Viennoiserie', 'Hojaldre de mantequilla, cada mañana'], en: ['Viennoiserie', 'Viennoiserie', 'Butter pastry, every morning'], items: ['croissant', 'painchoc', 'almond', 'pastelito', 'danish', 'cinnamon'] },
+    { id: 'panes', clip: 'bread', es: ['Panes', 'Panes', 'Horneados cada mañana · para llevar'], en: ['Bread', 'Bread', 'Baked every morning · to take home'], items: ['sourdough', 'baguette', 'pandeagua', 'brioche', 'sobao', 'seeded'] },
+    { id: 'salados', clip: 'savory', es: ['Salados', 'Salados', 'Para el almuerzo o la merienda'], en: ['Savory', 'Savory', 'For lunch or an afternoon bite'], items: ['croque', 'quiche', 'turkeybrie', 'caprese', 'empanada', 'salad'] },
+    { id: 'bebidas', clip: 'drinks', es: ['Bebidas', 'Bebidas', 'Jugos naturales, hechos al momento'], en: ['Drinks', 'Drinks', 'Fresh juices, made to order'], items: ['chinola', 'naranja', 'limonada', 'morir', 'batida', 'chocolate'] },
+    { id: 'postres', clip: 'mille-feuille', es: ['Postres', 'Postres', 'Y bizcochos por encargo'], en: ['Desserts', 'Desserts', 'And whole cakes to order'], items: ['millefeuille', 'cake', 'tresleches', 'cheesecake', 'flan', 'bizcocho'] }
+  ];
+  var ZONES = [['Piantini / Naco', 150], ['Bella Vista / Evaristo Morales', 150], ['Serrallés / Paraíso', 150], ['Gazcue / Zona Colonial', 200], ['Arroyo Hondo / Los Prados', 250], [null, null]];
+  var S = {
+    es: { tag: 'Panadería · Café', navMenu: 'Menú', navCarta: 'Carta completa', navReserve: 'Reservar', navAbout: 'Nosotros', bag: 'Pedido',
+      heroEyebrow: 'Desayunos · Café · Panes · Repostería', heroH1: 'La carta pasa <em>sus propias</em> páginas.', heroLede: 'Todo hecho en casa, cada mañana. Desliza para pasar las páginas de la carta y pide a domicilio desde cualquier capítulo.', cue: 'Desliza para abrir la carta',
+      prev: 'Capítulo anterior', next: 'Capítulo siguiente', seeAll: 'Ver carta completa ↓', chapter: 'Capítulo', of: 'de',
+      obEyebrow: 'Tu pedido', obEmptyT: 'Todavía no has <em>elegido</em> nada.', obEmptyS: 'Pasa las páginas de la carta y toca “+” en lo que te provoque.', obFullT: 'Tu pedido está <em>listo</em>.', obBtnEmpty: 'Volver a la carta', obBtn: 'Ordenar delivery',
+      piece: 'artículo', pieces: 'artículos', cartaEyebrow: 'La carta completa', cartaH2: 'Todo en una sola vista', cartaNote: 'Precios de ejemplo en pesos dominicanos. V vegano · VEG vegetariano · SG sin gluten.',
+      resEyebrow: 'Comer aquí', resH2: 'Reserva una <em>mesa</em>.', resBody: 'Para desayunos largos, cumpleaños o una reunión con café. Te confirmamos por WhatsApp.', resSend: 'Pedir reserva por WhatsApp',
+      fDate: 'Fecha', fTime: 'Hora', fPeople: 'Personas', fName: 'Nombre', fPhone: 'Teléfono', fNote: 'Nota (opcional)', fZone: 'Zona', fAddr: 'Dirección', fRef: 'Referencia (opcional)', fWhen: '¿Cuándo?', asap: 'Lo antes posible', later: 'Programar', fPay: 'Pago', payCash: 'Efectivo', payCard: 'Tarjeta al recibir', payTransfer: 'Transferencia', fNoteOrder: 'Nota para la cocina (opcional)',
+      eReq: 'Este campo es necesario.', ePhone: 'Escribe un número de teléfono válido.', eZone: 'Elige tu zona.', zonePick: 'Elige tu zona', zoneOther: 'Otra zona (te confirmamos el envío)',
+      abEyebrow: 'Nosotros', abQuote: 'Los hornos se prenden antes del amanecer. La puerta abre cuando los croissants están listos.', abBody: '[Un párrafo corto sobre los panaderos, la harina y la mantequilla que usan, y dónde queda el local.] Todo se hace en casa en tandas pequeñas, así que lo mejor se acaba temprano.',
+      dHours: 'Horario', dBreakfast: 'Desayunos', dBreakfastV: 'Hasta las 12:00 m.', dAddress: 'Dirección',
+      dTitle: 'Tu pedido', empty: 'Todavía no has agregado nada. Pasa las páginas de la carta y toca “+”.', subtotal: 'Subtotal', feeLater: 'El envío se calcula según tu zona en el próximo paso.', toCheckout: 'Continuar con la entrega', backCart: '← Volver al pedido',
+      delivery: 'Envío', total: 'Total', toConfirm: 'Por confirmar', sendOrder: 'Enviar pedido por WhatsApp', copyOrder: 'Copiar pedido', copied: 'Pedido copiado', copyFail: 'No se pudo copiar. Selecciona el texto en WhatsApp manualmente.',
+      sentMsg: 'Se abrió WhatsApp con tu pedido. Si no se abrió, toca “Copiar pedido” y envíalo al [NÚMERO].', fixErr: 'Revisa los campos marcados.',
+      add: 'Agregar', added: 'agregado', each: 'c/u', close: 'Cerrar', less: 'Menos', more: 'Más', addTo: 'Agregar', remove: 'Quitar uno', addOne: 'Agregar uno',
+      tag_v: 'V', tag_veg: 'VEG', tag_sg: 'SG', tag_hoy: 'Hoy', tagsLong: { v: 'Vegano', veg: 'Vegetariano', sg: 'Sin gluten', hoy: 'Especial de hoy' },
+      waHi: '¡Hola Hojaldre! Quiero pedir a domicilio:', waName: 'Nombre', waPhone: 'Teléfono', waZone: 'Zona', waAddr: 'Dirección', waRef: 'Referencia', waWhen: 'Entrega', waPay: 'Pago', waNote: 'Nota', waSub: 'Subtotal', waFee: 'Envío', waTot: 'Total',
+      waRes: '¡Hola Hojaldre! Quisiera reservar una mesa:', waDate: 'Fecha', waTime: 'Hora', waPeople: 'Personas', tabsLabel: 'Capítulos', cover: 'Portada', coverMenu: 'La carta', openMenu: 'Abrir la carta' },
+    en: { tag: 'Bakery · Café', navMenu: 'Menu', navCarta: 'Full menu', navReserve: 'Reserve', navAbout: 'About', bag: 'Order',
+      heroEyebrow: 'Breakfast · Coffee · Bread · Pastry', heroH1: 'The menu turns <em>its own</em> pages.', heroLede: 'Everything made in-house, every morning. Scroll to turn the pages and order delivery from any chapter.', cue: 'Scroll to open the menu',
+      prev: 'Previous chapter', next: 'Next chapter', seeAll: 'See the full menu ↓', chapter: 'Chapter', of: 'of',
+      obEyebrow: 'Your order', obEmptyT: 'Nothing <em>picked</em> yet.', obEmptyS: 'Turn the menu pages and tap “+” on anything you like.', obFullT: 'Your order is <em>ready</em>.', obBtnEmpty: 'Back to the menu', obBtn: 'Order delivery',
+      piece: 'item', pieces: 'items', cartaEyebrow: 'The full menu', cartaH2: 'Everything at a glance', cartaNote: 'Example prices in Dominican pesos. V vegan · VEG vegetarian · SG gluten-free.',
+      resEyebrow: 'Dine in', resH2: 'Reserve a <em>table</em>.', resBody: 'For long breakfasts, birthdays or a meeting over coffee. We confirm on WhatsApp.', resSend: 'Request on WhatsApp',
+      fDate: 'Date', fTime: 'Time', fPeople: 'Guests', fName: 'Name', fPhone: 'Phone', fNote: 'Note (optional)', fZone: 'Area', fAddr: 'Address', fRef: 'Landmark (optional)', fWhen: 'When?', asap: 'As soon as possible', later: 'Schedule', fPay: 'Payment', payCash: 'Cash', payCard: 'Card on delivery', payTransfer: 'Bank transfer', fNoteOrder: 'Note for the kitchen (optional)',
+      eReq: 'This field is required.', ePhone: 'Enter a valid phone number.', eZone: 'Choose your area.', zonePick: 'Choose your area', zoneOther: 'Other area (we confirm the fee)',
+      abEyebrow: 'About', abQuote: 'The ovens go on before sunrise. The doors open when the croissants are ready.', abBody: '[A short paragraph about the bakers, the flour and butter they use, and where the shop is.] Everything is made in-house in small batches, so the best pieces go early.',
+      dHours: 'Hours', dBreakfast: 'Breakfast', dBreakfastV: 'Until 12:00 pm', dAddress: 'Address',
+      dTitle: 'Your order', empty: 'Nothing here yet. Turn the menu pages and tap “+”.', subtotal: 'Subtotal', feeLater: 'Delivery is calculated by area in the next step.', toCheckout: 'Continue to delivery', backCart: '← Back to your order',
+      delivery: 'Delivery', total: 'Total', toConfirm: 'To confirm', sendOrder: 'Send order on WhatsApp', copyOrder: 'Copy order', copied: 'Order copied', copyFail: 'Couldn’t copy. Please copy the text manually.',
+      sentMsg: 'WhatsApp opened with your order. If it didn’t, tap “Copy order” and send it to [NUMBER].', fixErr: 'Check the highlighted fields.',
+      add: 'Add', added: 'added', each: 'each', close: 'Close', less: 'Less', more: 'More', addTo: 'Add', remove: 'Remove one', addOne: 'Add one',
+      tag_v: 'V', tag_veg: 'VEG', tag_sg: 'SG', tag_hoy: 'Today', tagsLong: { v: 'Vegan', veg: 'Vegetarian', sg: 'Gluten-free', hoy: 'Today’s special' },
+      waHi: 'Hi Hojaldre! I’d like to order delivery:', waName: 'Name', waPhone: 'Phone', waZone: 'Area', waAddr: 'Address', waRef: 'Landmark', waWhen: 'Delivery', waPay: 'Payment', waNote: 'Note', waSub: 'Subtotal', waFee: 'Delivery', waTot: 'Total',
+      waRes: 'Hi Hojaldre! I’d like to reserve a table:', waDate: 'Date', waTime: 'Time', waPeople: 'Guests', tabsLabel: 'Chapters', cover: 'Cover', coverMenu: 'The menu', openMenu: 'Open the menu' }
+  };
+
+  /* ======================= helpers ======================= */
+  var $ = function (id) { return document.getElementById(id); };
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var narrow = window.matchMedia('(max-width: 860px)');
+  function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+  var lang = store('hojaldre-lang') === 'en' ? 'en' : 'es';
+  function t(k) { return (S[lang][k] !== undefined ? S[lang][k] : S.es[k]); }
+  function nm(id) { return I[id][lang][0]; }
+  function ds(id) { return I[id][lang][1]; }
+  function rd(n) { return 'RD$ ' + n.toLocaleString('en-US'); }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  var ROM = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
+  function tagsHTML(id) { return (I[id].tags || []).map(function (g) { return '<span class="tag' + (g === 'hoy' ? ' hoy' : '') + '" title="' + esc(t('tagsLong')[g]) + '">' + esc(t('tag_' + g)) + '</span>'; }).join(''); }
+  function rowHTML(id) {
+    return '<li class="it"><button class="it-open" type="button" data-open="' + id + '"><span class="nm">' + esc(nm(id)) + tagsHTML(id) + '</span><span class="lead"></span><span class="pr">' + rd(I[id].p) + '</span></button>' +
+      '<p class="ds">' + esc(ds(id)) + '</p><button class="plus" type="button" data-quick="' + id + '" aria-label="' + esc(t('add') + ' ' + nm(id)) + '">+</button></li>';
+  }
+  function videoHTML(clip, preload) {
+    return '<video muted playsinline preload="' + preload + '" disablepictureinpicture poster="videos/' + clip + '-poster.jpg"><source src="videos/' + clip + '.mp4" type="video/mp4"><source src="videos/' + clip + '.webm" type="video/webm"></video>';
+  }
+
+  /* ======================= book ======================= */
+  var N = CH.length, PAGES = N; /* page 0 = closed cover, page k = chapter k-1 */
+  var book = $('book'), leaves = [];
+  function vpage(k) {
+    var c = CH[k][lang];
+    return '<div class="frame"></div><div class="vp"><p class="eyebrow">' + t('chapter') + ' ' + ROM[k] + '</p><h2>' + esc(c[0]) + '</h2><p class="note">' + esc(c[2]) + '</p>' +
+      '<div class="vbox" data-ch="' + k + '">' + videoHTML(CH[k].clip, k < 2 ? 'auto' : 'metadata') + '</div>' + (k ? '<p class="folio">— ' + (2 * k) + ' —</p>' : '<p class="folio">&nbsp;</p>') + '</div>';
+  }
+  function lpage(k) {
+    var c = CH[k][lang];
+    return '<div class="frame"></div><div class="lp"><div class="mvid" data-chm="' + k + '">' + videoHTML(CH[k].clip, 'none') + '</div>' +
+      '<p class="eyebrow">' + ROM[k] + ' · ' + esc(c[0]) + '</p><h3>' + esc(c[1]) + '</h3>' + (k === 1 ? '<p class="tagline">' + esc(c[2]) + '</p>' : '') +
+      '<ul class="items">' + CH[k].items.map(rowHTML).join('') + '</ul><p class="folio">— ' + (2 * k + 1) + ' —</p></div>';
+  }
+  function coverHTML() {
+    return '<div class="cframe"></div><div class="cv">' +
+      '<svg viewBox="0 0 120 120" aria-hidden="true"><defs><linearGradient id="gf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a9844f"/><stop offset=".45" stop-color="#f3dca8"/><stop offset=".6" stop-color="#d9b77c"/><stop offset="1" stop-color="#a87f46"/></linearGradient></defs>' +
+      '<circle cx="60" cy="60" r="56" fill="none" stroke="url(#gf)" stroke-width="1.6"/><circle cx="60" cy="60" r="49" fill="none" stroke="url(#gf)" stroke-width=".8"/>' +
+      '<text x="60" y="74" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-size="52" font-weight="500" fill="url(#gf)">H</text>' +
+      '<path d="M44 93h11M65 93h11" stroke="url(#gf)" stroke-width=".8"/><path d="M60 90l3 3-3 3-3-3z" fill="url(#gf)"/>' +
+      '<path d="M22 60h6M92 60h6" stroke="url(#gf)" stroke-width="1"/></svg>' +
+      '<p class="wm foil">HOJALDRE</p><p class="sub">' + esc(t('tag')) + '</p><div class="rule"></div><p class="menu">' + esc(t('coverMenu')) + '</p></div>' +
+      '<button class="open-btn" type="button" data-go="1">' + esc(t('openMenu')) + ' <span aria-hidden="true">→</span></button>';
+  }
+  function buildBook() {
+    var h = '<div class="shadow" aria-hidden="true"></div><div class="left endpaper" aria-hidden="true"></div><div class="stack">';
+    h += '<div class="face pg-r" style="backface-visibility:visible" data-base="1">' + lpage(N - 1) + '</div>';
+    for (var i = N - 2; i >= 0; i--) {
+      h += '<div class="leaf" data-i="' + (i + 1) + '"><div class="face front pg-r">' + lpage(i) + '<div class="shade sf"></div></div>' +
+        '<div class="face back pg-l">' + vpage(i + 1) + '<div class="shade sb"></div></div></div>';
+    }
+    h += '<div class="leaf" data-i="0"><div class="face front cover">' + coverHTML() + '<div class="shade sf"></div></div>' +
+      '<div class="face back pg-l">' + vpage(0) + '<div class="shade sb"></div></div></div>';
+    book.innerHTML = h + '</div>';
+    leaves = Array.prototype.slice.call(book.querySelectorAll('.leaf'));
+    $('tabs').innerHTML = CH.map(function (c, k) { return '<button class="tab" type="button" role="tab" data-go="' + (k + 1) + '">' + esc(c[lang][0]) + '</button>'; }).join('');
+    $('tabs').setAttribute('aria-label', t('tabsLabel'));
+    shown = -1; played = -1;
+  }
+
+  /* ======================= full carta ======================= */
+  function buildCarta() {
+    $('chips').innerHTML = CH.map(function (c) { return '<a href="#c-' + c.id + '">' + esc(c[lang][0]) + '</a>'; }).join('');
+    $('cgrid').innerHTML = CH.map(function (c) {
+      return '<div class="cat" id="c-' + c.id + '"><h3>' + esc(c[lang][1]) + '</h3><p class="note">' + esc(c[lang][2]) + '</p><ul class="items">' + c.items.map(rowHTML).join('') + '</ul></div>';
+    }).join('');
+  }
+
+  /* ======================= cart ======================= */
+  var cart = [];
+  try { cart = JSON.parse(store('hojaldre-cart2') || '[]') || []; } catch (e) { cart = []; }
+  cart = cart.filter(function (l) { return I[l.id]; });
+  function save() { store('hojaldre-cart2', JSON.stringify(cart)); }
+  function unit(l) { var p = I[l.id].p; for (var k in l.o) p += OPTS[k].v[l.o[k]][2]; return p; }
+  function optText(l) { return Object.keys(l.o || {}).map(function (k) { return OPTS[k].v[l.o[k]][lang === 'es' ? 0 : 1]; }).join(' · '); }
+  function count() { return cart.reduce(function (a, l) { return a + l.q; }, 0); }
+  function subtotal() { return cart.reduce(function (a, l) { return a + unit(l) * l.q; }, 0); }
+  function addLine(id, o, q) {
+    var key = id + JSON.stringify(o || {});
+    var hit = cart.filter(function (l) { return l.id + JSON.stringify(l.o || {}) === key; })[0];
+    if (hit) hit.q += q; else cart.push({ id: id, o: o || {}, q: q });
+    save(); renderCart();
+    var b = $('badge'); b.classList.remove('bump'); void b.offsetWidth; b.classList.add('bump');
+    toast(nm(id) + ' ' + t('added') + ' · ' + count() + ' ' + (count() === 1 ? t('piece') : t('pieces')));
+  }
+  var toastT;
+  function toast(msg) { var el = $('toast'); el.textContent = msg; el.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(function () { el.classList.remove('show'); }, 1900); }
+
+  function renderCart() {
+    var n = count(), sub = subtotal();
+    $('badge').textContent = n;
+    $('empty').hidden = n > 0;
+    $('toCheckout').disabled = !n; $('toCheckout').style.opacity = n ? '' : '.5';
+    var ul = $('lines'); ul.innerHTML = '';
+    cart.forEach(function (l, i) {
+      var li = document.createElement('li'); li.className = 'line';
+      li.innerHTML = '<div><div class="ln">' + esc(nm(l.id)) + '</div>' + (optText(l) ? '<div class="lo">' + esc(optText(l)) + '</div>' : '') + '<div class="lp">' + rd(unit(l)) + ' ' + t('each') + ' · ' + rd(unit(l) * l.q) + '</div></div>' +
+        '<div class="qty"><button type="button" data-dec="' + i + '" aria-label="' + esc(t('remove') + ' ' + nm(l.id)) + '">−</button><span>' + l.q + '</span><button type="button" data-inc="' + i + '" aria-label="' + esc(t('addOne') + ' ' + nm(l.id)) + '">+</button></div>';
+      ul.appendChild(li);
+    });
+    $('subA').textContent = rd(sub); $('subB').textContent = rd(sub);
+    /* order band */
+    if (n) { $('obTitle').innerHTML = t('obFullT'); $('obSum').textContent = n + ' ' + (n === 1 ? t('piece') : t('pieces')) + ' · ' + rd(sub); $('orderBtn').textContent = t('obBtn') + ' · ' + rd(sub); }
+    else { $('obTitle').innerHTML = t('obEmptyT'); $('obSum').textContent = t('obEmptyS'); $('orderBtn').textContent = t('obBtnEmpty'); }
+    renderTotals();
+  }
+  $('lines').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    var i = b.getAttribute('data-dec'), j = b.getAttribute('data-inc');
+    if (i !== null) { cart[+i].q--; if (cart[+i].q <= 0) cart.splice(+i, 1); }
+    else if (j !== null) cart[+j].q++;
+    else return;
+    save(); renderCart();
+  });
+
+  /* ======================= item sheet ======================= */
+  var cur = { id: null, o: {}, q: 1 }, lastFocus = null;
+  function openSheet(id) {
+    var it = I[id];
+    cur = { id: id, o: {}, q: 1 };
+    (it.opts || []).forEach(function (k) { cur.o[k] = 0; });
+    $('sName').textContent = nm(id); $('sDesc').textContent = ds(id);
+    $('sImgBox').hidden = !it.img; if (it.img) { $('sImg').src = it.img; }
+    var h = '';
+    (it.opts || []).forEach(function (k) {
+      var o = OPTS[k];
+      h += '<fieldset class="fieldset"><legend>' + esc(o[lang]) + '</legend><div class="radios">' + o.v.map(function (v, vi) {
+        return '<label><input type="radio" name="o-' + k + '" value="' + vi + '"' + (vi === 0 ? ' checked' : '') + '><span>' + esc(v[lang === 'es' ? 0 : 1]) + (v[2] ? ' +' + rd(v[2]) : '') + '</span></label>';
+      }).join('') + '</div></fieldset>';
+    });
+    $('sOpts').innerHTML = h;
+    sheetPrice();
+    lastFocus = document.activeElement;
+    $('scrim').hidden = false; $('sheet').hidden = false;
+    setTimeout(function () { $('sClose').focus(); }, 30);
+  }
+  function sheetPrice() {
+    var u = unit(cur);
+    $('sPrice').textContent = rd(u); $('sQty').textContent = cur.q;
+    $('sAdd').textContent = t('addTo') + ' · ' + rd(u * cur.q);
+  }
+  function closeSheet() { $('sheet').hidden = true; if (!$('drawer').classList.contains('open')) $('scrim').hidden = true; if (lastFocus && lastFocus.focus) lastFocus.focus(); }
+  $('sOpts').addEventListener('change', function (e) { var n = e.target.name; if (n && n.indexOf('o-') === 0) { cur.o[n.slice(2)] = +e.target.value; sheetPrice(); } });
+  $('sMinus').addEventListener('click', function () { if (cur.q > 1) { cur.q--; sheetPrice(); } });
+  $('sPlus').addEventListener('click', function () { cur.q++; sheetPrice(); });
+  $('sAdd').addEventListener('click', function () { addLine(cur.id, cur.o, cur.q); closeSheet(); });
+  $('sClose').addEventListener('click', closeSheet);
+
+  /* clicks anywhere on menu rows */
+  document.addEventListener('click', function (e) {
+    var o = e.target.closest('[data-open]'); if (o) { openSheet(o.getAttribute('data-open')); return; }
+    var q = e.target.closest('[data-quick]');
+    if (q) {
+      var id = q.getAttribute('data-quick');
+      if ((I[id].opts || []).length) { openSheet(id); return; }
+      addLine(id, {}, 1);
+      q.classList.add('done'); q.textContent = '✓'; setTimeout(function () { q.classList.remove('done'); q.textContent = '+'; }, 1100);
+      return;
+    }
+    var g = e.target.closest('[data-go]'); if (g) go(+g.getAttribute('data-go'));
+  });
+
+  /* ======================= drawer + delivery ======================= */
+  function openCart() {
+    lastFocus = document.activeElement;
+    showView('cart');
+    $('scrim').hidden = false; $('drawer').classList.add('open'); $('drawer').setAttribute('aria-hidden', 'false');
+    setTimeout(function () { $('closeCart').focus(); }, 60);
+  }
+  function closeCart() {
+    $('drawer').classList.remove('open'); $('drawer').setAttribute('aria-hidden', 'true');
+    if ($('sheet').hidden) $('scrim').hidden = true;
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  function showView(v) { $('vCart').hidden = v !== 'cart'; $('vCheck').hidden = v !== 'check'; }
+  $('openCart').addEventListener('click', openCart);
+  $('closeCart').addEventListener('click', closeCart);
+  $('scrim').addEventListener('click', function () { if (!$('sheet').hidden) closeSheet(); else closeCart(); });
+  document.addEventListener('keydown', function (e) { if (e.key !== 'Escape') return; if (!$('sheet').hidden) closeSheet(); else if ($('drawer').classList.contains('open')) closeCart(); });
+  $('toCheckout').addEventListener('click', function () { if (count()) { showView('check'); renderTotals(); $('dName').focus(); } });
+  $('backCart').addEventListener('click', function () { showView('cart'); });
+  $('orderBtn').addEventListener('click', function () { if (count()) openCart(); else go(1); });
+
+  function buildZones() {
+    var sel = $('dZone'), v = sel.value;
+    sel.innerHTML = '<option value="">' + esc(t('zonePick')) + '</option>' + ZONES.map(function (z, i) { return '<option value="' + i + '">' + esc(z[0] ? z[0] + ' · ' + rd(z[1]) : t('zoneOther')) + '</option>'; }).join('');
+    sel.value = v;
+  }
+  function fee() { var v = $('dZone').value; if (v === '') return undefined; return ZONES[+v][1]; }
+  function radio(name) { var r = document.querySelector('input[name="' + name + '"]:checked'); return r ? r.value : ''; }
+  function payLabel() { return t({ cash: 'payCash', card: 'payCard', transfer: 'payTransfer' }[radio('pay')]); }
+  function orderText() {
+    var f = fee(), sub = subtotal(), lines = cart.map(function (l) { return '• ' + l.q + ' × ' + nm(l.id) + (optText(l) ? ' (' + optText(l) + ')' : '') + ' — ' + rd(unit(l) * l.q); });
+    var when = radio('when') === 'later' ? ($('dTime').value || '—') : t('asap');
+    var zone = $('dZone').value === '' ? '—' : (ZONES[+$('dZone').value][0] || t('zoneOther'));
+    return [t('waHi'), ''].concat(lines).concat(['', t('waSub') + ': ' + rd(sub), t('waFee') + ': ' + (f == null ? t('toConfirm') : rd(f)), t('waTot') + ': ' + rd(sub + (f || 0)) + (f == null ? ' + ' + t('waFee').toLowerCase() : ''), '',
+      t('waName') + ': ' + $('dName').value, t('waPhone') + ': ' + $('dPhone').value, t('waZone') + ': ' + zone, t('waAddr') + ': ' + $('dAddr').value + ($('dRef').value ? ' (' + t('waRef') + ': ' + $('dRef').value + ')' : ''),
+      t('waWhen') + ': ' + when, t('waPay') + ': ' + payLabel()]).concat($('dNote').value ? [t('waNote') + ': ' + $('dNote').value] : []).join('\n');
+  }
+  function renderTotals() {
+    var f = fee(), sub = subtotal();
+    $('fee').textContent = f === undefined ? '—' : (f === null ? t('toConfirm') : rd(f));
+    $('tot').textContent = rd(sub + (f || 0));
+    $('sendOrder').href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(orderText());
+  }
+  function mark(id, bad) { var f = $(id).closest('.field'); f.classList.toggle('bad', bad); $(id).setAttribute('aria-invalid', bad ? 'true' : 'false'); return bad; }
+  function phoneOk(v) { return v.replace(/\D/g, '').length >= 7; }
+  function validDelivery() {
+    var bad = false;
+    bad = mark('dName', !$('dName').value.trim()) || bad;
+    bad = mark('dPhone', !phoneOk($('dPhone').value)) || bad;
+    bad = mark('dZone', $('dZone').value === '') || bad;
+    bad = mark('dAddr', !$('dAddr').value.trim()) || bad;
+    if (radio('when') === 'later') bad = mark('dTime', !$('dTime').value) || bad;
+    return !bad;
+  }
+  var triedDel = false, triedRes = false;
+  $('delForm').addEventListener('input', function () { if (triedDel) validDelivery(); renderTotals(); });
+  $('delForm').addEventListener('change', function () { $('laterBox').hidden = radio('when') !== 'later'; if (triedDel) validDelivery(); renderTotals(); });
+  $('sendOrder').addEventListener('click', function (e) {
+    if (!count()) { e.preventDefault(); return; }
+    triedDel = true;
+    if (!validDelivery()) { e.preventDefault(); toast(t('fixErr')); var f = document.querySelector('#delForm .bad input, #delForm .bad select'); if (f) f.focus(); return; }
+    renderTotals(); var s = $('sent'); s.textContent = t('sentMsg'); s.classList.add('show');
+  });
+  $('copyOrder').addEventListener('click', function () {
+    var txt = orderText();
+    try { navigator.clipboard.writeText(txt).then(function () { toast(t('copied')); }, function () { toast(t('copyFail')); }); } catch (e) { toast(t('copyFail')); }
+  });
+
+  /* ======================= reservations ======================= */
+  function resText() {
+    return [t('waRes'), '', t('waDate') + ': ' + $('rDate').value, t('waTime') + ': ' + $('rTime').value, t('waPeople') + ': ' + $('rPeople').value, t('waName') + ': ' + $('rName').value, t('waPhone') + ': ' + $('rPhone').value].concat($('rNote').value ? [t('waNote') + ': ' + $('rNote').value] : []).join('\n');
+  }
+  function checkRes() {
+    var bad = false;
+    bad = mark('rDate', !$('rDate').value) || bad; bad = mark('rTime', !$('rTime').value) || bad;
+    bad = mark('rName', !$('rName').value.trim()) || bad; bad = mark('rPhone', !phoneOk($('rPhone').value)) || bad;
+    return !bad;
+  }
+  function syncRes() { if (triedRes) checkRes(); $('resSend').href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(resText()); }
+  $('resForm').addEventListener('input', syncRes); $('resForm').addEventListener('change', syncRes);
+  $('resSend').addEventListener('click', function (e) {
+    triedRes = true;
+    if (!checkRes()) { e.preventDefault(); toast(t('fixErr')); } else syncRes();
+  });
+
+  /* ======================= language ======================= */
+  function applyLang() {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i]').forEach(function (el) { el.textContent = t(el.getAttribute('data-i')); });
+    document.querySelectorAll('[data-ih]').forEach(function (el) { el.innerHTML = t(el.getAttribute('data-ih')); });
+    document.querySelectorAll('[data-ia]').forEach(function (el) { el.setAttribute('aria-label', t(el.getAttribute('data-ia'))); });
+    document.querySelectorAll('[data-lang]').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-lang') === lang ? 'true' : 'false'); });
+    buildBook(); buildCarta(); buildZones(); renderCart(); syncRes();
+    if (!$('sheet').hidden && cur.id) openSheet(cur.id);
+    paint(curP < 0 ? target : curP);
+  }
+  document.querySelectorAll('[data-lang]').forEach(function (b) { b.addEventListener('click', function () { lang = b.getAttribute('data-lang'); store('hojaldre-lang', lang); applyLang(); }); });
+
+  /* ======================= page turning ======================= */
+  var track = $('menu'), bg = $('bg');
+  var target = 0, curP = -1, shown = -1, played = -1;
+  function span() { var r = track.getBoundingClientRect(); return { r: r, s: Math.max(1, r.height - window.innerHeight) }; }
+  function readScroll() { var m = span(); target = Math.min(1, Math.max(0, -m.r.top / m.s)) * PAGES; }
+  function go(i) {
+    i = Math.max(0, Math.min(PAGES, i));
+    var m = span();
+    window.scrollTo({ top: window.pageYOffset + m.r.top + m.s * (i / PAGES) + 1, behavior: reduce ? 'auto' : 'smooth' });
+  }
+  function paint(p) {
+    for (var k = 0; k < leaves.length; k++) {
+      var el = leaves[k], i = +el.getAttribute('data-i');
+      var f = Math.min(1, Math.max(0, p - i));
+      var z = f < 0.5 ? 0.6 * (N + 1 - i) : 0.6 * (i + 1);
+      el.style.transform = 'translateZ(' + z.toFixed(2) + 'px) rotateY(' + (-180 * f).toFixed(2) + 'deg)';
+      el.style.zIndex = f < 0.5 ? 40 - i : 50 + i;
+      el.style.visibility = (narrow.matches && f > 0.995) ? 'hidden' : '';
+      el.querySelector('.sf').style.opacity = f < 0.5 ? (f * 1.3).toFixed(3) : 0;
+      el.querySelector('.sb').style.opacity = f >= 0.5 ? ((1 - f) * 1.3).toFixed(3) : 0;
+    }
+    var f0 = Math.min(1, Math.max(0, p));
+    book.style.transform = narrow.matches ? 'rotateX(6deg)' : 'translateX(' + (-25 * (1 - f0)).toFixed(2) + '%) rotateX(6deg)';
+    book.querySelector('.left').style.visibility = (!narrow.matches && f0 < 0.02) ? 'hidden' : '';
+    $('tabs').style.transform = narrow.matches ? '' : 'translateX(' + (-0.25 * book.offsetWidth * (1 - f0)).toFixed(1) + 'px)';
+    bg.style.transform = 'scale(' + (1.08 + p * 0.008).toFixed(4) + ') translate3d(' + (-p * 4).toFixed(1) + 'px,' + (-p * 3).toFixed(1) + 'px,0)';
+    var idx = Math.max(0, Math.min(PAGES, Math.round(p)));
+    if (idx !== shown) {
+      shown = idx;
+      leaves.forEach(function (el) {
+        var i = +el.getAttribute('data-i');
+        el.querySelector('.front').classList.toggle('on', i === idx);
+        el.querySelector('.back').classList.toggle('on', i === idx - 1);
+      });
+      book.querySelector('[data-base]').classList.toggle('on', idx === PAGES);
+      document.querySelectorAll('.tab').forEach(function (b, j) { b.setAttribute('aria-current', j + 1 === idx ? 'true' : 'false'); b.setAttribute('aria-selected', j + 1 === idx ? 'true' : 'false'); });
+      var tb = document.querySelector('.tab[aria-current="true"]'); if (tb && narrow.matches) tb.parentNode.scrollTo({ left: tb.offsetLeft - 40, behavior: reduce ? 'auto' : 'smooth' });
+      $('counter').textContent = idx === 0 ? t('cover') : t('chapter') + ' ' + idx + ' ' + t('of') + ' ' + N + ' · ' + CH[idx - 1][lang][0];
+    }
+  }
+
+  /* chapter clips: each chapter plays its Higgsfield video once its page lands */
+  function clip(k) { return book.querySelector((narrow.matches ? '[data-chm="' : '[data-ch="') + k + '"] video'); }
+  function playClip(k) {
+    book.querySelectorAll('video').forEach(function (v) { if (v !== clip(k)) { v.pause(); try { if (v.currentTime) v.currentTime = 0; } catch (e) {} } });
+    var nx = clip(k + 1); if (nx) nx.preload = 'auto';
+    var v = clip(k); if (!v || reduce) return;
+    if (v.preload !== 'auto') v.preload = 'auto';
+    try { v.currentTime = 0; } catch (e) {}
+    var pr = v.play(); if (pr && pr.catch) pr.catch(function () {});
+  }
+  function rewind(k) { var v = clip(k); if (v) { v.pause(); try { v.currentTime = 0; } catch (e) {} } }
+
+  var last = 0, STEP = 1000 / 60;
+  function loop(now) {
+    var dt = last ? Math.min(100, now - last) : STEP; last = now;
+    var prev = curP < 0 ? target : curP;
+    curP = reduce ? target : prev + (target - prev) * (1 - Math.pow(0.9, dt / STEP));
+    if (Math.abs(target - curP) < 0.001) curP = target;
+    paint(curP);
+    var idx = Math.round(curP), r = track.getBoundingClientRect(), pinned = r.top <= 2 && r.bottom >= window.innerHeight - 2;
+    if (pinned && Math.abs(curP - idx) < 0.06 && idx !== played) { played = idx; if (idx > 0) playClip(idx - 1); else rewind(0); }
+    if (played >= 0 && (Math.abs(curP - played) > 0.6 || !pinned)) { if (played > 0) rewind(played - 1); played = -1; }
+    requestAnimationFrame(loop);
+  }
+
+  window.addEventListener('scroll', readScroll, { passive: true });
+  window.addEventListener('resize', function () { readScroll(); shown = -1; played = -1; });
+  $('prev').addEventListener('click', function () { go(Math.round(target) - 1); });
+  $('next').addEventListener('click', function () { go(Math.round(target) + 1); });
+
+  applyLang();
+  readScroll();
+  requestAnimationFrame(loop);
+})();
+</script>
+
+</body>
+</html>

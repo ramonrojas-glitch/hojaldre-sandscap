@@ -273,7 +273,9 @@ footer b{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--gol
   .left{display:none}
   .stack{left:0;width:100%}
   .book{width:min(380px,calc(100vw - 32px),calc((var(--vh) - var(--hh) - 178px) * .66));aspect-ratio:500/760}
-  .mvid{display:block;height:118px}
+  .mvid{display:block;height:auto;flex:0 0 40%;min-height:120px}
+  .lp .items{padding-bottom:26px;-webkit-mask-image:linear-gradient(#000 calc(100% - 34px),transparent);mask-image:linear-gradient(#000 calc(100% - 34px),transparent)}
+  .mvid video{-webkit-mask-image:radial-gradient(ellipse 78% 74% at 50% 48%,#000 62%,rgba(0,0,0,0) 100%);mask-image:radial-gradient(ellipse 78% 74% at 50% 48%,#000 62%,rgba(0,0,0,0) 100%)}
   .controls .counter{display:none}
   .it{min-height:44px}
   .lp{padding:6% 7% 4%}
@@ -284,7 +286,7 @@ footer b{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--gol
   .form{grid-template-columns:minmax(0,1fr)}
   .sheet{top:auto;bottom:0;transform:translate(-50%,0);border-radius:14px 14px 0 0;width:100%;max-height:88vh}
 }
-@media (max-height:700px) and (max-width:860px){.mvid{height:76px}.lp h3{font-size:21px}.fullmenu{display:none}.book{width:min(380px,calc(100vw - 32px),calc((var(--vh) - var(--hh) - 128px) * .66))}}
+@media (max-height:700px) and (max-width:860px){.mvid{flex-basis:34%;min-height:96px}.lp h3{font-size:21px}.fullmenu{display:none}.book{width:min(380px,calc(100vw - 32px),calc((var(--vh) - var(--hh) - 128px) * .66))}}
 /* phones held sideways: one wide page, clip on the left, dishes on the right */
 @media (orientation:landscape) and (max-height:520px){
   :root{--hh:52px;--pg:520px}
@@ -577,14 +579,14 @@ footer b{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--gol
     combojuice: { es: 'Jugo', en: 'Juice', v: [['Chinola', 'Chinola', 0], ['Naranja', 'Naranja', 0]] }
   };
   var CH = [
-    { id: 'firma', clip: 'cinnamon-roll', es: ['Firma', 'La firma de la casa', 'Lo que más se pide'], en: ['Signatures', 'House signatures', 'What people order most'], items: ['croissant', 'danish', 'cinnamon', 'millefeuille', 'cake'] },
-    { id: 'desayunos', clip: 'breakfast', es: ['Desayunos', 'Desayunos', 'Se sirven hasta las 12:00 m.'], en: ['Breakfast', 'Breakfast', 'Served until 12:00 pm'], items: ['benedict', 'avotoast', 'frenchtoast', 'mangu', 'omelette', 'combo'] },
-    { id: 'cafe', clip: 'coffee', es: ['Café', 'Café', 'Café dominicano de altura'], en: ['Coffee', 'Coffee', 'Dominican highland coffee'], items: ['espresso', 'cortado', 'cappuccino', 'latte', 'cafeconleche', 'coldbrew'] },
-    { id: 'viennoiserie', clip: 'croissant', es: ['Viennoiserie', 'Viennoiserie', 'Hojaldre de mantequilla, cada mañana'], en: ['Viennoiserie', 'Viennoiserie', 'Butter pastry, every morning'], items: ['croissant', 'painchoc', 'almond', 'pastelito', 'danish', 'cinnamon'] },
-    { id: 'panes', clip: 'bread', es: ['Panes', 'Panes', 'Horneados cada mañana · para llevar'], en: ['Bread', 'Bread', 'Baked every morning · to take home'], items: ['sourdough', 'baguette', 'pandeagua', 'brioche', 'sobao', 'seeded'] },
-    { id: 'salados', clip: 'savory', es: ['Salados', 'Salados', 'Para el almuerzo o la merienda'], en: ['Savory', 'Savory', 'For lunch or an afternoon bite'], items: ['croque', 'quiche', 'turkeybrie', 'caprese', 'empanada', 'salad'] },
-    { id: 'bebidas', clip: 'drinks', es: ['Bebidas', 'Bebidas', 'Jugos naturales, hechos al momento'], en: ['Drinks', 'Drinks', 'Fresh juices, made to order'], items: ['chinola', 'naranja', 'limonada', 'morir', 'batida', 'chocolate'] },
-    { id: 'postres', clip: 'mille-feuille', es: ['Postres', 'Postres', 'Y bizcochos por encargo'], en: ['Desserts', 'Desserts', 'And whole cakes to order'], items: ['millefeuille', 'cake', 'tresleches', 'cheesecake', 'flan', 'bizcocho'] }
+    { id: 'firma', pos: '50% 42%', clip: 'cinnamon-roll', es: ['Firma', 'La firma de la casa', 'Lo que más se pide'], en: ['Signatures', 'House signatures', 'What people order most'], items: ['croissant', 'danish', 'cinnamon', 'millefeuille', 'cake'] },
+    { id: 'desayunos', pos: '50% 45%', clip: 'breakfast', es: ['Desayunos', 'Desayunos', 'Se sirven hasta las 12:00 m.'], en: ['Breakfast', 'Breakfast', 'Served until 12:00 pm'], items: ['benedict', 'avotoast', 'frenchtoast', 'mangu', 'omelette', 'combo'] },
+    { id: 'cafe', pos: '50% 44%', clip: 'coffee', es: ['Café', 'Café', 'Café dominicano de altura'], en: ['Coffee', 'Coffee', 'Dominican highland coffee'], items: ['espresso', 'cortado', 'cappuccino', 'latte', 'cafeconleche', 'coldbrew'] },
+    { id: 'viennoiserie', pos: '50% 47%', clip: 'croissant', es: ['Viennoiserie', 'Viennoiserie', 'Hojaldre de mantequilla, cada mañana'], en: ['Viennoiserie', 'Viennoiserie', 'Butter pastry, every morning'], items: ['croissant', 'painchoc', 'almond', 'pastelito', 'danish', 'cinnamon'] },
+    { id: 'panes', pos: '50% 46%', clip: 'bread', es: ['Panes', 'Panes', 'Horneados cada mañana · para llevar'], en: ['Bread', 'Bread', 'Baked every morning · to take home'], items: ['sourdough', 'baguette', 'pandeagua', 'brioche', 'sobao', 'seeded'] },
+    { id: 'salados', pos: '50% 56%', clip: 'savory', es: ['Salados', 'Salados', 'Para el almuerzo o la merienda'], en: ['Savory', 'Savory', 'For lunch or an afternoon bite'], items: ['croque', 'quiche', 'turkeybrie', 'caprese', 'empanada', 'salad'] },
+    { id: 'bebidas', pos: '60% 34%', clip: 'drinks', es: ['Bebidas', 'Bebidas', 'Jugos naturales, hechos al momento'], en: ['Drinks', 'Drinks', 'Fresh juices, made to order'], items: ['chinola', 'naranja', 'limonada', 'morir', 'batida', 'chocolate'] },
+    { id: 'postres', pos: '50% 40%', clip: 'mille-feuille', es: ['Postres', 'Postres', 'Y bizcochos por encargo'], en: ['Desserts', 'Desserts', 'And whole cakes to order'], items: ['millefeuille', 'cake', 'tresleches', 'cheesecake', 'flan', 'bizcocho'] }
   ];
   var ZONES = [['Piantini / Naco', 150], ['Bella Vista / Evaristo Morales', 150], ['Serrallés / Paraíso', 150], ['Gazcue / Zona Colonial', 200], ['Arroyo Hondo / Los Prados', 250], [null, null]];
   var S = {
@@ -641,8 +643,8 @@ footer b{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--gol
     return '<li class="it"><button class="it-open" type="button" data-open="' + id + '"><span class="nm">' + esc(nm(id)) + tagsHTML(id) + '</span><span class="lead"></span><span class="pr">' + rd(I[id].p) + '</span></button>' +
       '<p class="ds">' + esc(ds(id)) + '</p><button class="plus" type="button" data-quick="' + id + '" aria-label="' + esc(t('add') + ' ' + nm(id)) + '">+</button></li>';
   }
-  function videoHTML(clip, preload, shown) {
-    return '<video muted playsinline preload="' + (shown ? preload : 'none') + '" disablepictureinpicture' + (shown ? ' poster="videos/' + clip + '-poster.jpg"' : '') + '><source src="videos/' + clip + '.mp4" type="video/mp4"><source src="videos/' + clip + '.webm" type="video/webm"></video>';
+  function videoHTML(clip, preload, shown, pos) {
+    return '<video muted playsinline preload="' + (shown ? preload : 'none') + '" disablepictureinpicture style="object-position:' + (pos || '50% 50%') + '"' + (shown ? ' poster="videos/' + clip + '-poster.jpg"' : '') + '><source src="videos/' + clip + '.mp4" type="video/mp4"><source src="videos/' + clip + '.webm" type="video/webm"></video>';
   }
 
   /* ======================= book ======================= */
@@ -651,11 +653,11 @@ footer b{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--gol
   function vpage(k) {
     var c = CH[k][lang];
     return '<div class="frame"></div><div class="vp"><p class="eyebrow">' + t('chapter') + ' ' + ROM[k] + '</p><h2>' + esc(c[0]) + '</h2><p class="note">' + esc(c[2]) + '</p>' +
-      '<div class="vbox" data-ch="' + k + '">' + videoHTML(CH[k].clip, k < 2 ? 'auto' : 'none', !narrow.matches) + '</div>' + (k ? '<p class="folio">— ' + (2 * k) + ' —</p>' : '<p class="folio">&nbsp;</p>') + '</div>';
+      '<div class="vbox" data-ch="' + k + '">' + videoHTML(CH[k].clip, k < 2 ? 'auto' : 'none', !narrow.matches, CH[k].pos) + '</div>' + (k ? '<p class="folio">— ' + (2 * k) + ' —</p>' : '<p class="folio">&nbsp;</p>') + '</div>';
   }
   function lpage(k) {
     var c = CH[k][lang];
-    return '<div class="frame"></div><div class="lp"><div class="mvid" data-chm="' + k + '">' + videoHTML(CH[k].clip, k < 2 ? 'auto' : 'none', narrow.matches) + '</div>' +
+    return '<div class="frame"></div><div class="lp"><div class="mvid" data-chm="' + k + '">' + videoHTML(CH[k].clip, k < 2 ? 'auto' : 'none', narrow.matches, CH[k].pos) + '</div>' +
       '<p class="eyebrow">' + ROM[k] + ' · ' + esc(c[0]) + '</p><h3>' + esc(c[1]) + '</h3>' + (k === 1 ? '<p class="tagline">' + esc(c[2]) + '</p>' : '') +
       '<ul class="items">' + CH[k].items.map(rowHTML).join('') + '</ul><p class="folio">— ' + (2 * k + 1) + ' —</p></div>';
   }

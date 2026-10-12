@@ -122,7 +122,7 @@ nav a{text-decoration:none;color:var(--cream-2)}
 .vp h2{margin:2px 0 0;font-family:var(--serif);font-weight:500;font-size:clamp(28px,3.4vw,46px);line-height:1.05;color:var(--gold)}
 .vp .note{margin:0;font-size:13px;color:var(--cream-3);letter-spacing:.04em}
 .vbox{flex:1;min-height:0;width:100%;position:relative}
-.vbox video,.mvid video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;-webkit-mask-image:radial-gradient(ellipse 64% 62% at 50% 50%,#000 58%,rgba(0,0,0,0) 100%);mask-image:radial-gradient(ellipse 64% 62% at 50% 50%,#000 58%,rgba(0,0,0,0) 100%)}
+.vbox video,.mvid img,.mclip video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;-webkit-mask-image:radial-gradient(ellipse 64% 62% at 50% 50%,#000 58%,rgba(0,0,0,0) 100%);mask-image:radial-gradient(ellipse 64% 62% at 50% 50%,#000 58%,rgba(0,0,0,0) 100%)}
 /* right page: the dishes */
 .lp{position:relative;height:100%;padding:7% 8% 4%;display:flex;flex-direction:column;gap:8px}
 .lp .eyebrow{font-size:11px;letter-spacing:.24em}
@@ -143,6 +143,7 @@ nav a{text-decoration:none;color:var(--cream-2)}
 .tag{display:inline-block;margin-left:6px;padding:1px 6px;border-radius:4px;border:1px solid rgba(216,183,126,.35);font-family:var(--sans);font-size:10px;letter-spacing:.1em;color:var(--gold);vertical-align:middle;white-space:nowrap}
 .tag.hoy{background:var(--gold);color:var(--ink);border-color:var(--gold)}
 .mvid{display:none;position:relative;height:150px;margin:-2px -4px 4px;flex:none}
+.mclip{position:absolute;z-index:5;pointer-events:none;overflow:hidden}
 
 /* chapter tabs */
 .tabs{display:flex;flex-direction:column;gap:6px;margin-left:-2px;position:relative;z-index:4}
@@ -211,7 +212,7 @@ footer b{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--gol
 .scrim{position:fixed;inset:0;z-index:60;background:rgba(8,6,5,.62)}
 .sheet{position:fixed;z-index:62;left:50%;top:50%;width:min(520px,calc(100% - 32px));max-height:calc(100vh - 48px);overflow-y:auto;transform:translate(-50%,-50%);background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
 .sheet .simg{position:relative;aspect-ratio:16/10;background:#0e0a08;overflow:hidden;border-radius:14px 14px 0 0}
-.sheet .simg img{width:100%;height:100%;object-fit:cover}
+.sheet .simg img,.sheet .simg video{width:100%;height:100%;object-fit:cover;display:block}
 .sheet .sbody{padding:22px 24px 24px;display:flex;flex-direction:column;gap:16px}
 .sheet h3{margin:0;font-family:var(--serif);font-weight:500;font-size:32px;line-height:1.05}
 .sheet p.sd{margin:0;color:var(--cream-2);line-height:1.6}
@@ -275,7 +276,7 @@ footer b{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--gol
   .book{width:min(380px,calc(100vw - 32px),calc((var(--vh) - var(--hh) - 178px) * .66));aspect-ratio:500/760}
   .mvid{display:block;height:auto;flex:0 0 40%;min-height:120px}
   .lp .items{padding-bottom:26px;-webkit-mask-image:linear-gradient(#000 calc(100% - 34px),transparent);mask-image:linear-gradient(#000 calc(100% - 34px),transparent)}
-  .mvid video{-webkit-mask-image:radial-gradient(ellipse 78% 74% at 50% 48%,#000 62%,rgba(0,0,0,0) 100%);mask-image:radial-gradient(ellipse 78% 74% at 50% 48%,#000 62%,rgba(0,0,0,0) 100%)}
+  .mvid img,.mclip video{-webkit-mask-image:radial-gradient(ellipse 78% 74% at 50% 48%,#000 62%,rgba(0,0,0,0) 100%);mask-image:radial-gradient(ellipse 78% 74% at 50% 48%,#000 62%,rgba(0,0,0,0) 100%)}
   .controls .counter{display:none}
   .it{min-height:44px}
   .lp{padding:6% 7% 4%}
@@ -364,6 +365,7 @@ footer b{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--gol
   <div class="stage">
     <div class="bg" id="bg" aria-hidden="true"></div>
     <div class="vignette" aria-hidden="true"></div>
+    <div class="mclip" id="mclip" aria-hidden="true" hidden><video muted playsinline preload="auto" disablepictureinpicture></video></div>
     <div class="desk">
       <div class="persp"><div class="book" id="book"></div></div>
       <div class="tabs" id="tabs" role="tablist" aria-label="Capítulos"></div>
@@ -445,7 +447,7 @@ footer b{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--gol
 
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sName" hidden>
   <button class="x" type="button" id="sClose" data-ia="close" aria-label="Cerrar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-  <div class="simg" id="sImgBox"><img id="sImg" alt=""></div>
+  <div class="simg" id="sImgBox"><img id="sImg" alt=""><video id="sVid" muted playsinline preload="none" disablepictureinpicture hidden></video></div>
   <div class="sbody">
     <div><h3 id="sName"></h3><p class="price" id="sPrice" style="margin:6px 0 0"></p></div>
     <p class="sd" id="sDesc"></p>
@@ -588,6 +590,8 @@ footer b{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--gol
     { id: 'bebidas', pos: '60% 34%', clip: 'drinks', es: ['Bebidas', 'Bebidas', 'Jugos naturales, hechos al momento'], en: ['Drinks', 'Drinks', 'Fresh juices, made to order'], items: ['chinola', 'naranja', 'limonada', 'morir', 'batida', 'chocolate'] },
     { id: 'postres', pos: '50% 40%', clip: 'mille-feuille', es: ['Postres', 'Postres', 'Y bizcochos por encargo'], en: ['Desserts', 'Desserts', 'And whole cakes to order'], items: ['millefeuille', 'cake', 'tresleches', 'cheesecake', 'flan', 'bizcocho'] }
   ];
+  var SHEETCLIP = { croissant: ['croissant', '50% 55%'], danish: ['danish', '50% 50%'], cinnamon: ['cinnamon-roll', '50% 45%'], millefeuille: ['mille-feuille', '50% 45%'], cake: ['chocolate-cake', '50% 45%'],
+    benedict: ['breakfast', '50% 48%'], cappuccino: ['coffee', '50% 45%'], sourdough: ['bread', '50% 50%'], croque: ['savory', '50% 58%'], chinola: ['drinks', '60% 45%'] };
   var ZONES = [['Piantini / Naco', 150], ['Bella Vista / Evaristo Morales', 150], ['Serrallés / Paraíso', 150], ['Gazcue / Zona Colonial', 200], ['Arroyo Hondo / Los Prados', 250], [null, null]];
   var S = {
     es: { tag: 'Panadería · Café', navMenu: 'Menú', navCarta: 'Carta completa', navReserve: 'Reservar', navAbout: 'Nosotros', bag: 'Pedido',
@@ -657,7 +661,7 @@ footer b{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--gol
   }
   function lpage(k) {
     var c = CH[k][lang];
-    return '<div class="frame"></div><div class="lp"><div class="mvid" data-chm="' + k + '">' + videoHTML(CH[k].clip, k < 2 ? 'auto' : 'none', narrow.matches, CH[k].pos) + '</div>' +
+    return '<div class="frame"></div><div class="lp"><div class="mvid" data-chm="' + k + '"><img src="videos/' + CH[k].clip + '-poster.jpg" alt="" style="object-position:' + CH[k].pos + '"' + (k > 1 ? ' loading="lazy"' : '') + '></div>' +
       '<p class="eyebrow">' + ROM[k] + ' · ' + esc(c[0]) + '</p><h3>' + esc(c[1]) + '</h3>' + (k === 1 ? '<p class="tagline">' + esc(c[2]) + '</p>' : '') +
       '<ul class="items">' + CH[k].items.map(rowHTML).join('') + '</ul><p class="folio">— ' + (2 * k + 1) + ' —</p></div>';
   }
@@ -749,7 +753,16 @@ footer b{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--gol
     cur = { id: id, o: {}, q: 1 };
     (it.opts || []).forEach(function (k) { cur.o[k] = 0; });
     $('sName').textContent = nm(id); $('sDesc').textContent = ds(id);
-    $('sImgBox').hidden = !it.img; if (it.img) { $('sImg').src = it.img; }
+    var sc = SHEETCLIP[id], sv = $('sVid');
+    $('sImgBox').hidden = !it.img && !sc;
+    sv.pause();
+    if (sc && !reduce) {
+      $('sImg').hidden = true; sv.hidden = false;
+      sv.poster = 'videos/' + sc[0] + '-poster.jpg'; sv.src = 'videos/' + sc[0] + (MP4 ? '.mp4' : '.webm'); sv.style.objectPosition = sc[1];
+      sv.muted = true; var pr = sv.play(); if (pr && pr.catch) pr.catch(function () {});
+    } else if (it.img || sc) {
+      sv.hidden = true; $('sImg').hidden = false; $('sImg').src = sc ? 'videos/' + sc[0] + '-poster.jpg' : it.img;
+    }
     var h = '';
     (it.opts || []).forEach(function (k) {
       var o = OPTS[k];
@@ -768,7 +781,7 @@ footer b{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--gol
     $('sPrice').textContent = rd(u); $('sQty').textContent = cur.q;
     $('sAdd').textContent = t('addTo') + ' · ' + rd(u * cur.q);
   }
-  function closeSheet() { $('sheet').hidden = true; if (!$('drawer').classList.contains('open')) $('scrim').hidden = true; if (lastFocus && lastFocus.focus) lastFocus.focus(); }
+  function closeSheet() { $('sVid').pause(); $('sheet').hidden = true; if (!$('drawer').classList.contains('open')) $('scrim').hidden = true; if (lastFocus && lastFocus.focus) lastFocus.focus(); }
   $('sOpts').addEventListener('change', function (e) { var n = e.target.name; if (n && n.indexOf('o-') === 0) { cur.o[n.slice(2)] = +e.target.value; sheetPrice(); } });
   $('sMinus').addEventListener('click', function () { if (cur.q > 1) { cur.q--; sheetPrice(); } });
   $('sPlus').addEventListener('click', function () { cur.q++; sheetPrice(); });
@@ -890,12 +903,13 @@ footer b{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--gol
   /* ======================= page turning ======================= */
   var track = $('menu'), bg = $('bg');
   var target = 0, curP = -1, shown = -1, played = -1;
-  function span() { var r = track.getBoundingClientRect(); return { r: r, s: Math.max(1, r.height - window.innerHeight) }; }
-  function readScroll() { var m = span(); target = Math.min(1, Math.max(0, -m.r.top / m.s)) * PAGES; }
+  var snaps = track.querySelectorAll('.snap');
+  function step() { return Math.max(1, snaps[1].offsetTop - snaps[0].offsetTop); }
+  function readScroll() { var r = track.getBoundingClientRect(); target = Math.min(PAGES, Math.max(0, -r.top / step())); }
   function go(i) {
     i = Math.max(0, Math.min(PAGES, i));
-    var m = span();
-    window.scrollTo({ top: window.pageYOffset + m.r.top + m.s * (i / PAGES) + 1, behavior: reduce ? 'auto' : 'smooth' });
+    var r = track.getBoundingClientRect();
+    window.scrollTo({ top: window.pageYOffset + r.top + step() * i + 1, behavior: reduce ? 'auto' : 'smooth' });
   }
   function paint(p) {
     for (var k = 0; k < leaves.length; k++) {
@@ -909,7 +923,7 @@ footer b{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--gol
       el.querySelector('.sb').style.opacity = f >= 0.5 ? ((1 - f) * 1.3).toFixed(3) : 0;
     }
     var f0 = Math.min(1, Math.max(0, p));
-    book.style.transform = narrow.matches ? 'rotateX(6deg)' : 'translateX(' + (-25 * (1 - f0)).toFixed(2) + '%) rotateX(6deg)';
+    book.style.transform = narrow.matches ? 'none' : 'translateX(' + (-25 * (1 - f0)).toFixed(2) + '%) rotateX(6deg)';
     book.querySelector('.left').style.visibility = (!narrow.matches && f0 < 0.02) ? 'hidden' : '';
     $('tabs').style.transform = narrow.matches ? '' : 'translateX(' + (-0.25 * book.offsetWidth * (1 - f0)).toFixed(1) + 'px)';
     bg.style.transform = 'scale(' + (1.08 + p * 0.008).toFixed(4) + ') translate3d(' + (-p * 4).toFixed(1) + 'px,' + (-p * 3).toFixed(1) + 'px,0)';
@@ -929,8 +943,26 @@ footer b{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--gol
   }
 
   /* chapter clips: each chapter plays its Higgsfield video once its page lands */
-  function clip(k) { return book.querySelector((narrow.matches ? '[data-chm="' : '[data-ch="') + k + '"] video'); }
+  var mclip = $('mclip'), mv = mclip.querySelector('video'), mcur = -1;
+  var MP4 = !!mv.canPlayType && mv.canPlayType('video/mp4; codecs="avc1.42E01E"') !== '';
+  function clip(k) { return narrow.matches ? null : book.querySelector('[data-ch="' + k + '"] video'); }
+  function phoneClip(k) {
+    var box = book.querySelector('[data-chm="' + k + '"]'); if (!box) return;
+    var b = box.getBoundingClientRect(), st = mclip.parentNode.getBoundingClientRect();
+    mclip.style.left = (b.left - st.left) + 'px'; mclip.style.top = (b.top - st.top) + 'px';
+    mclip.style.width = b.width + 'px'; mclip.style.height = b.height + 'px';
+    if (mcur !== k) { mcur = k; mv.poster = 'videos/' + CH[k].clip + '-poster.jpg'; mv.src = 'videos/' + CH[k].clip + (MP4 ? '.mp4' : '.webm'); mv.style.objectPosition = CH[k].pos; }
+    mclip.hidden = false;
+    if (reduce) return;
+    mv.muted = true;
+    try { mv.currentTime = 0; } catch (e) {}
+    var pr = mv.play(); if (pr && pr.catch) pr.catch(function () {});
+  }
+  function hidePhoneClip() { if (!mclip.hidden) { mclip.hidden = true; mv.pause(); } }
+  /* if the phone blocked autoplay (low-power mode), the first tap starts the clip */
+  document.addEventListener('touchend', function () { if (!mclip.hidden && mv.paused && !mv.ended && !reduce) { mv.muted = true; var pr = mv.play(); if (pr && pr.catch) pr.catch(function () {}); } }, { passive: true });
   function playClip(k) {
+    if (narrow.matches) { phoneClip(k); return; }
     book.querySelectorAll('video').forEach(function (v) { if (v !== clip(k)) { v.pause(); try { if (v.currentTime) v.currentTime = 0; } catch (e) {} } });
     var nx = clip(k + 1); if (nx) nx.preload = 'auto';
     var v = clip(k); if (!v || reduce) return;
@@ -938,7 +970,7 @@ footer b{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--gol
     try { v.currentTime = 0; } catch (e) {}
     var pr = v.play(); if (pr && pr.catch) pr.catch(function () {});
   }
-  function rewind(k) { var v = clip(k); if (v) { v.pause(); try { v.currentTime = 0; } catch (e) {} } }
+  function rewind(k) { hidePhoneClip(); var v = clip(k); if (v) { v.pause(); try { v.currentTime = 0; } catch (e) {} } }
 
   var last = 0, STEP = 1000 / 60;
   function loop(now) {
@@ -947,14 +979,15 @@ footer b{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--gol
     curP = reduce ? target : prev + (target - prev) * (1 - Math.pow(0.9, dt / STEP));
     if (Math.abs(target - curP) < 0.001) curP = target;
     paint(curP);
-    var idx = Math.round(curP), r = track.getBoundingClientRect(), pinned = r.top <= 2 && r.bottom >= window.innerHeight - 2;
-    if (pinned && Math.abs(curP - idx) < 0.06 && idx !== played) { played = idx; if (idx > 0) playClip(idx - 1); else rewind(0); }
-    if (played >= 0 && (Math.abs(curP - played) > 0.6 || !pinned)) { if (played > 0) rewind(played - 1); played = -1; }
+    var idx = Math.round(curP), r = track.getBoundingClientRect(), pinned = r.top <= 2 && r.bottom >= window.innerHeight * 0.6;
+    if (pinned && Math.abs(curP - idx) < 0.04 && idx !== played) { played = idx; if (idx > 0) playClip(idx - 1); else rewind(0); }
+    /* phones: the overlay clip leaves the instant the page starts to move, so nothing ever shows through a turning page */
+    if (played >= 0 && (Math.abs(curP - played) > (narrow.matches ? 0.02 : 0.6) || !pinned)) { if (played > 0) rewind(played - 1); else hidePhoneClip(); played = -1; }
     requestAnimationFrame(loop);
   }
 
   window.addEventListener('scroll', readScroll, { passive: true });
-  window.addEventListener('resize', function () { readScroll(); shown = -1; played = -1; });
+  window.addEventListener('resize', function () { readScroll(); shown = -1; played = -1; hidePhoneClip(); });
   var wasNarrow = narrow.matches;
   narrow.addEventListener ? narrow.addEventListener('change', function () { if (narrow.matches !== wasNarrow) { wasNarrow = narrow.matches; buildBook(); paint(curP < 0 ? target : curP); } }) : null;
   /* swipe left/right on the menu to turn pages */

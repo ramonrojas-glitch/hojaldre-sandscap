@@ -325,6 +325,15 @@ header.scrolled{box-shadow:0 10px 26px -14px rgba(0,0,0,.7)}
 .cart-note{position:absolute;top:calc(100% + 8px);right:16px;max-width:min(300px,calc(100vw - 32px));padding:9px 16px;border-radius:999px;background:var(--gold);color:var(--ink);font-size:13px;font-weight:600;line-height:1.25;letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-shadow:0 12px 28px -12px rgba(0,0,0,.75);opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .2s ease,transform .2s ease,visibility 0s linear .2s;pointer-events:none}
 .cart-note.show{opacity:1;visibility:visible;transform:none;transition:opacity .2s ease,transform .2s ease}
 @media (prefers-reduced-motion:reduce){header,.cart-note,.cart-note.show{transition:none}.cart-note{transform:none}}
+
+/* Aviso de confianza: Brinco no guarda tarjetas (las protege AZUL, CardNet o MIO) */
+.fvault{display:flex;align-items:flex-start;gap:8px;max-width:560px;margin:0;font-size:13px;line-height:1.55;text-align:left;text-wrap:pretty;letter-spacing:normal;text-transform:none}
+.fvault svg,.vault-line svg{flex:none;margin-top:2px}
+.vault-line{display:flex;align-items:flex-start;justify-content:center;gap:7px;margin:0;font-size:12.5px;line-height:1.45;text-align:left;text-wrap:pretty;letter-spacing:normal;text-transform:none}
+.vault-line svg{margin-top:1px}
+.fvault b,.vault-line b{font-weight:600}
+footer .fvault{flex-basis:100%;color:var(--cream-3)}footer .fvault svg{color:var(--gold)}footer .fvault b{font-family:inherit;font-size:inherit;font-weight:600;color:var(--cream)}
+.vault-line{color:var(--cream-3)}.vault-line svg{color:var(--gold)}.vault-line b{color:var(--cream)}
 </style>
 <link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png">
 </head>
@@ -448,7 +457,8 @@ header.scrolled{box-shadow:0 10px 26px -14px rgba(0,0,0,.7)}
 </main>
 
 <footer>
-  <div class="wrap"><b>Hojaldre</b><span>© 2026 Hojaldre · <span data-i="tag">Panadería · Café</span> · [INSTAGRAM]</span></div>
+  <div class="wrap"><b>Hojaldre</b><span>© 2026 Hojaldre · <span data-i="tag">Panadería · Café</span> · [INSTAGRAM]</span>
+    <p class="fvault"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10.5 11V9.6a1.5 1.5 0 0 1 3 0V11"/></svg><span data-ih="vaultFoot">Brinco no guarda tarjetas. Tus datos de pago quedan protegidos por el procesador certificado PCI DSS: <b>AZUL</b>, <b>CardNet</b> o <b>MIO</b>.</span></p></div>
 </footer>
 
 <div class="scrim" id="scrim" hidden></div>
@@ -481,6 +491,7 @@ header.scrolled{box-shadow:0 10px 26px -14px rgba(0,0,0,.7)}
       <div class="sum"><span data-i="subtotal">Subtotal</span><span id="subA"></span></div>
       <p class="fine" data-i="feeLater">El envío se calcula según tu zona en el próximo paso.</p>
       <button class="pill solid wide" type="button" id="toCheckout" data-i="toCheckout">Continuar con la entrega</button>
+      <p class="vault-line"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10.5 11V9.6a1.5 1.5 0 0 1 3 0V11"/></svg><span data-ih="vaultLine">Brinco no guarda tu tarjeta. La protegen <b>AZUL</b>, <b>CardNet</b> o <b>MIO</b>.</span></p>
     </div>
   </div>
   <div class="dview" id="vCheck" hidden>
@@ -515,6 +526,7 @@ header.scrolled{box-shadow:0 10px 26px -14px rgba(0,0,0,.7)}
       <div class="sum"><span data-i="delivery">Envío</span><span id="fee"></span></div>
       <div class="sum total"><span data-i="total">Total</span><span class="price" id="tot"></span></div>
       <a class="pill solid wide" id="sendOrder" href="#" target="_blank" rel="noopener" data-i="sendOrder">Enviar pedido por WhatsApp</a>
+      <p class="vault-line"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10.5 11V9.6a1.5 1.5 0 0 1 3 0V11"/></svg><span data-ih="vaultLine">Brinco no guarda tu tarjeta. La protegen <b>AZUL</b>, <b>CardNet</b> o <b>MIO</b>.</span></p>
       <button class="pill ghost wide" type="button" id="copyOrder" data-i="copyOrder">Copiar pedido</button>
     </div>
   </div>
@@ -612,6 +624,7 @@ header.scrolled{box-shadow:0 10px 26px -14px rgba(0,0,0,.7)}
       eReq: 'Este campo es necesario.', ePhone: 'Escribe un número de teléfono válido.', eZone: 'Elige tu zona.', zonePick: 'Elige tu zona', zoneOther: 'Otra zona (te confirmamos el envío)',
       abEyebrow: 'Nosotros', abQuote: 'Los hornos se prenden antes del amanecer. La puerta abre cuando los croissants están listos.', abBody: '[Un párrafo corto sobre los panaderos, la harina y la mantequilla que usan, y dónde queda el local.] Todo se hace en casa en tandas pequeñas, así que lo mejor se acaba temprano.',
       dHours: 'Horario', dBreakfast: 'Desayunos', dBreakfastV: 'Hasta las 12:00 m.', dAddress: 'Dirección',
+      vaultFoot: 'Brinco no guarda tarjetas. Tus datos de pago quedan protegidos por el procesador certificado PCI DSS: <b>AZUL</b>, <b>CardNet</b> o <b>MIO</b>.', vaultLine: 'Brinco no guarda tu tarjeta. La protegen <b>AZUL</b>, <b>CardNet</b> o <b>MIO</b>.',
       dTitle: 'Tu pedido', empty: 'Todavía no has agregado nada. Pasa las páginas de la carta y toca “+”.', subtotal: 'Subtotal', feeLater: 'El envío se calcula según tu zona en el próximo paso.', toCheckout: 'Continuar con la entrega', backCart: '← Volver al pedido',
       delivery: 'Envío', total: 'Total', toConfirm: 'Por confirmar', sendOrder: 'Enviar pedido por WhatsApp', copyOrder: 'Copiar pedido', copied: 'Pedido copiado', copyFail: 'No se pudo copiar. Selecciona el texto en WhatsApp manualmente.',
       sentMsg: 'Se abrió WhatsApp con tu pedido. Si no se abrió, toca “Copiar pedido” y envíalo al [NÚMERO].', fixErr: 'Revisa los campos marcados.',
@@ -629,6 +642,7 @@ header.scrolled{box-shadow:0 10px 26px -14px rgba(0,0,0,.7)}
       eReq: 'This field is required.', ePhone: 'Enter a valid phone number.', eZone: 'Choose your area.', zonePick: 'Choose your area', zoneOther: 'Other area (we confirm the fee)',
       abEyebrow: 'About', abQuote: 'The ovens go on before sunrise. The doors open when the croissants are ready.', abBody: '[A short paragraph about the bakers, the flour and butter they use, and where the shop is.] Everything is made in-house in small batches, so the best pieces go early.',
       dHours: 'Hours', dBreakfast: 'Breakfast', dBreakfastV: 'Until 12:00 pm', dAddress: 'Address',
+      vaultFoot: 'Brinco doesn’t store cards. Your payment details are protected by the PCI DSS–certified processor: <b>AZUL</b>, <b>CardNet</b> or <b>MIO</b>.', vaultLine: 'Brinco doesn’t store your card. It’s protected by <b>AZUL</b>, <b>CardNet</b> or <b>MIO</b>.',
       dTitle: 'Your order', empty: 'Nothing here yet. Turn the menu pages and tap “+”.', subtotal: 'Subtotal', feeLater: 'Delivery is calculated by area in the next step.', toCheckout: 'Continue to delivery', backCart: '← Back to your order',
       delivery: 'Delivery', total: 'Total', toConfirm: 'To confirm', sendOrder: 'Send order on WhatsApp', copyOrder: 'Copy order', copied: 'Order copied', copyFail: 'Couldn’t copy. Please copy the text manually.',
       sentMsg: 'WhatsApp opened with your order. If it didn’t, tap “Copy order” and send it to [NUMBER].', fixErr: 'Check the highlighted fields.',

@@ -318,6 +318,13 @@ footer b{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--gol
   .sheet{max-height:calc(var(--vh) - 24px)}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.drawer,.toast,.tab{transition:none}.badge.bump{animation:none}}
+
+/* Barra fija: siempre visible, sombra al bajar y aviso de "agregado" junto al botón del pedido */
+header{transition:box-shadow .2s ease}
+header.scrolled{box-shadow:0 10px 26px -14px rgba(0,0,0,.7)}
+.cart-note{position:absolute;top:calc(100% + 8px);right:16px;max-width:min(300px,calc(100vw - 32px));padding:9px 16px;border-radius:999px;background:var(--gold);color:var(--ink);font-size:13px;font-weight:600;line-height:1.25;letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-shadow:0 12px 28px -12px rgba(0,0,0,.75);opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .2s ease,transform .2s ease,visibility 0s linear .2s;pointer-events:none}
+.cart-note.show{opacity:1;visibility:visible;transform:none;transition:opacity .2s ease,transform .2s ease}
+@media (prefers-reduced-motion:reduce){header,.cart-note,.cart-note.show{transition:none}.cart-note{transform:none}}
 </style>
 <link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png">
 </head>
@@ -715,8 +722,21 @@ footer b{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--gol
     if (hit) hit.q += q; else cart.push({ id: id, o: o || {}, q: q });
     save(); renderCart();
     var b = $('badge'); b.classList.remove('bump'); void b.offsetWidth; b.classList.add('bump');
+    avisoAgregado(nm(id));
     toast(nm(id) + ' ' + t('added') + ' · ' + count() + ' ' + (count() === 1 ? t('piece') : t('pieces')));
   }
+  // aviso junto al botón del pedido (la barra de arriba queda fija al bajar)
+  var headBar = document.querySelector('body > header'), cartNote = document.createElement('div'), cartNoteT;
+  cartNote.className = 'cart-note'; cartNote.setAttribute('aria-hidden', 'true'); headBar.appendChild(cartNote);
+  function avisoAgregado(nombre) {
+    var h = headBar.getBoundingClientRect(), b = $('openCart').getBoundingClientRect();
+    cartNote.style.right = Math.max(8, Math.round(h.right - b.right)) + 'px';
+    cartNote.textContent = '✓ ' + nombre + (lang === 'en' ? ' in your order' : ' en tu pedido');
+    cartNote.classList.add('show');
+    clearTimeout(cartNoteT); cartNoteT = setTimeout(function () { cartNote.classList.remove('show'); }, 2200);
+  }
+  function marcarBarra() { headBar.classList.toggle('scrolled', window.scrollY > 8); }
+  window.addEventListener('scroll', marcarBarra, { passive: true }); marcarBarra();
   var toastT;
   function toast(msg) { var el = $('toast'); el.textContent = msg; el.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(function () { el.classList.remove('show'); }, 1900); }
 

@@ -6,24 +6,68 @@
   "logo": "",
   "logoBlanco": "",
   "favicon": "/images/favicon.png",
-  "color": "#8a6534",
-  "colorTexto": "#1a120c",
-  "colorFondo": "#f4ecdf",
+  "color": "#d8b77e",
+  "colorTexto": "#efe4d2",
+  "colorFondo": "#120d0a",
+  "colorFondoClaro": "#f4ecdf",
+  "tema": "oscuro",
   "fuenteTitulos": "Cormorant Garamond",
   "fuenteTexto": "Karla",
   "googleFonts": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&family=Karla:wght@400;500;600&display=swap",
   "prefijoOrden": "HJ",
   "moneda": "RD$",
   "envio": 150,
-  "entrega": { "delivery": true, "pickup": true, "deliveryMin": 30, "deliveryMax": 45, "pickupMin": 15 },
-  "sectores": ["Piantini", "Naco", "Bella Vista", "Evaristo Morales", "Serrallés", "Paraíso", "Los Cacicazgos", "Mirador Sur", "La Esperilla", "Gazcue", "Zona Colonial", "Arroyo Hondo", "Los Prados", "Renacimiento"],
-  "tienda": { "direccion": "Av. Sarasota 39, Bella Vista", "ciudad": "Santo Domingo", "mapa": "https://maps.google.com/?q=Av.+Sarasota+39,+Bella+Vista,+Santo+Domingo" },
-  "producto": { "singular": "pieza", "plural": "piezas" },
+  "entrega": {
+    "delivery": true,
+    "pickup": true,
+    "deliveryMin": 30,
+    "deliveryMax": 45,
+    "pickupMin": 15
+  },
+  "sectores": [
+    "Piantini",
+    "Naco",
+    "Bella Vista",
+    "Evaristo Morales",
+    "Serrallés",
+    "Paraíso",
+    "Los Cacicazgos",
+    "Mirador Sur",
+    "La Esperilla",
+    "Gazcue",
+    "Zona Colonial",
+    "Arroyo Hondo",
+    "Los Prados",
+    "Renacimiento"
+  ],
+  "tienda": {
+    "direccion": "Av. Sarasota 39, Bella Vista",
+    "ciudad": "Santo Domingo",
+    "mapa": "https://maps.google.com/?q=Av.+Sarasota+39,+Bella+Vista,+Santo+Domingo"
+  },
+  "producto": {
+    "singular": "pieza",
+    "plural": "piezas"
+  },
+  "productoEn": {
+    "singular": "piece",
+    "plural": "pieces"
+  },
   "etapas": {
     "preparando": "Preparando tu pedido",
     "coccion": "Saliendo del horno",
     "coccionTexto": "Tus piezas salen del horno y las empacamos calientes. Ya casi."
   },
-  "contacto": { "direccion": "[Dirección del local]", "telefono": "[Teléfono / WhatsApp]", "correo": "[Correo]", "instagram": "[@usuario]" },
+  "etapasEn": {
+    "preparando": "Preparing your order",
+    "coccion": "Fresh out of the oven",
+    "coccionTexto": "Your pieces are coming out of the oven and we pack them warm. Almost there."
+  },
+  "contacto": {
+    "direccion": "[Dirección del local]",
+    "telefono": "[Teléfono / WhatsApp]",
+    "correo": "[Correo]",
+    "instagram": "[@usuario]"
+  },
   "idioma": "es"
 }

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Hojaldre, panadería de autor: croissants, Danish, cinnamon rolls, mille-feuille and signature chocolate cake. Order for pickup on WhatsApp.">
+<meta name="description" content="Hojaldre, panadería de autor: croissants, Danish, cinnamon rolls, mille-feuille and signature chocolate cake. Pide a domicilio o para recoger y paga en línea.">
 <meta property="og:title" content="Hojaldre Panadería">
 <meta property="og:description" content="Tonight's carta, one page at a time.">
 <meta property="og:image" content="https://hojaldre.sandscap.com.do/images/croissant.jpg">
@@ -209,8 +209,8 @@ footer .wrap{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:sp
 footer b{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--gold)}
 
 /* item sheet */
-.scrim{position:fixed;inset:0;z-index:60;background:rgba(8,6,5,.62)}
-.sheet{position:fixed;z-index:62;left:50%;top:50%;width:min(520px,calc(100% - 32px));max-height:calc(100vh - 48px);overflow-y:auto;transform:translate(-50%,-50%);background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.scrim{position:fixed;inset:0;z-index:100;background:rgba(8,6,5,.62)}
+.sheet{position:fixed;z-index:102;left:50%;top:50%;width:min(520px,calc(100% - 32px));max-height:calc(100vh - 48px);overflow-y:auto;transform:translate(-50%,-50%);background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
 .sheet .simg{position:relative;aspect-ratio:16/10;background:#0e0a08;overflow:hidden;border-radius:14px 14px 0 0}
 .sheet .simg img,.sheet .simg video{width:100%;height:100%;object-fit:cover;display:block}
 .sheet .sbody{padding:22px 24px 24px;display:flex;flex-direction:column;gap:16px}
@@ -224,7 +224,7 @@ footer b{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--gol
 .x{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--cream);display:flex;align-items:center;justify-content:center;cursor:pointer}
 
 /* order drawer */
-.drawer{position:fixed;top:0;right:0;bottom:0;z-index:61;width:min(440px,100%);background:var(--panel);border-left:1px solid var(--line);display:flex;flex-direction:column;transform:translateX(105%);transition:transform .35s ease;padding-bottom:env(safe-area-inset-bottom,0px)}
+.drawer{position:fixed;top:0;right:0;bottom:0;z-index:101;width:min(440px,100%);background:var(--panel);border-left:1px solid var(--line);display:flex;flex-direction:column;transform:translateX(105%);transition:transform .35s ease;padding-bottom:env(safe-area-inset-bottom,0px)}
 .drawer.open{transform:none}
 .dhead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:20px 22px 16px;border-bottom:1px solid var(--line)}
 .dhead h2{margin:0;font-family:var(--serif);font-weight:500;font-size:30px}
@@ -245,7 +245,7 @@ footer b{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--gol
 .dscroll .form{grid-template-columns:minmax(0,1fr);padding-top:12px}
 .sent{display:none;padding:12px 14px;border-radius:10px;border:1px solid rgba(216,183,126,.35);font-size:14px;line-height:1.5;color:var(--cream-2)}
 .sent.show{display:block}
-.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));z-index:70;transform:translate(-50%,calc(100% + 60px));visibility:hidden;padding:12px 20px;border-radius:999px;background:var(--cream);color:var(--ink);font-size:14px;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,.45);transition:transform .3s ease,visibility .3s;max-width:calc(100% - 32px)}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));z-index:103;transform:translate(-50%,calc(100% + 60px));visibility:hidden;padding:12px 20px;border-radius:999px;background:var(--cream);color:var(--ink);font-size:14px;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,.45);transition:transform .3s ease,visibility .3s;max-width:calc(100% - 32px)}
 .toast.show{transform:translate(-50%,0);visibility:visible}
 
 @media (max-width:860px){
@@ -333,9 +333,19 @@ header.scrolled{box-shadow:0 10px 26px -14px rgba(0,0,0,.7)}
 .vault-line svg{margin-top:1px}
 .fvault b,.vault-line b{font-weight:600}
 footer .fvault{flex-basis:100%;color:var(--cream-3)}footer .fvault svg{color:var(--gold)}footer .fvault b{font-family:inherit;font-size:inherit;font-weight:600;color:var(--cream)}
+.myorders{display:none;align-items:center;justify-content:center;width:44px;height:44px;border-radius:999px;border:1px solid var(--line);color:var(--cream-2)}
+.myorders:hover{color:var(--gold);border-color:var(--gold)}
+@media (max-width:860px),(orientation:landscape) and (max-height:520px){.myorders{display:inline-flex}}
+@media (max-width:360px){.myorders{display:none}}
+footer .fvault .bk-fvault{margin:0;max-width:none;justify-content:flex-start;opacity:1}
+.flegal{display:flex;flex-wrap:wrap;gap:6px 20px;flex-basis:100%;font-size:13px;letter-spacing:.04em}
+.flegal a{color:var(--cream-2);text-decoration:none;padding:6px 0}
+.flegal a:hover{color:var(--gold)}
 .vault-line{color:var(--cream-3)}.vault-line svg{color:var(--gold)}.vault-line b{color:var(--cream)}
 </style>
 <link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png">
+<link rel="stylesheet" href="https://piezza.sandscap.com.do/brinco/v1/kit.css">
+<script src="https://piezza.sandscap.com.do/brinco/v1/kit.js" defer></script>
 </head>
 <body>
 
@@ -348,12 +358,14 @@ footer .fvault{flex-basis:100%;color:var(--cream-3)}footer .fvault svg{color:var
       <a href="#carta" data-i="navCarta">Carta completa</a>
       <a href="#reservar" data-i="navReserve">Reservar</a>
       <a href="#nosotros" data-i="navAbout">Nosotros</a>
+      <a href="/pedido/" data-brinco="mis-pedidos" data-i="navOrders">Mis pedidos</a>
     </nav>
     <div class="hright">
       <div class="lang" role="group" aria-label="Idioma / Language">
         <button type="button" data-lang="es" aria-pressed="true">ES</button>
         <button type="button" data-lang="en" aria-pressed="false">EN</button>
       </div>
+      <a class="myorders" href="/pedido/" data-ia="navOrders" aria-label="Mis pedidos"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg></a>
       <button class="bag" type="button" id="openCart">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
         <span class="bl" data-i="bag">Pedido</span><span class="badge" id="badge">0</span>
@@ -458,7 +470,8 @@ footer .fvault{flex-basis:100%;color:var(--cream-3)}footer .fvault svg{color:var
 
 <footer>
   <div class="wrap"><b>Hojaldre</b><span>© 2026 Hojaldre · <span data-i="tag">Panadería · Café</span> · [INSTAGRAM]</span>
-    <p class="fvault"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10.5 11V9.6a1.5 1.5 0 0 1 3 0V11"/></svg><span data-ih="vaultFoot">Brinco no guarda tarjetas. Tus datos de pago quedan protegidos por el procesador certificado PCI DSS: <b>AZUL</b>, <b>CardNet</b> o <b>MIO</b>.</span></p></div>
+    <div class="flegal" role="navigation" aria-label="Legal"><a href="/pedido/" data-i="navOrders">Mis pedidos</a><a href="/seguridad/" data-i="lgSec">Seguridad</a><a href="/privacidad/" data-i="lgPriv">Privacidad</a><a href="/terminos/" data-i="lgTerms">Términos</a></div>
+    <p class="fvault" data-brinco="vault-footer"></p></div>
 </footer>
 
 <div class="scrim" id="scrim" hidden></div>
@@ -489,45 +502,9 @@ footer .fvault{flex-basis:100%;color:var(--cream-3)}footer .fvault svg{color:var
     </div>
     <div class="dfoot">
       <div class="sum"><span data-i="subtotal">Subtotal</span><span id="subA"></span></div>
-      <p class="fine" data-i="feeLater">El envío se calcula según tu zona en el próximo paso.</p>
-      <button class="pill solid wide" type="button" id="toCheckout" data-i="toCheckout">Continuar con la entrega</button>
+      <p class="fine" data-i="feeLater">Elige delivery o recoger y paga en el próximo paso.</p>
+      <button class="pill solid wide" type="button" id="toCheckout" data-i="toCheckout">Finalizar pedido</button>
       <p class="vault-line"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10.5 11V9.6a1.5 1.5 0 0 1 3 0V11"/></svg><span data-ih="vaultLine">Brinco no guarda tu tarjeta. La protegen <b>AZUL</b>, <b>CardNet</b> o <b>MIO</b>.</span></p>
-    </div>
-  </div>
-  <div class="dview" id="vCheck" hidden>
-    <div class="dscroll">
-      <button class="back-link" type="button" id="backCart" data-i="backCart">← Volver al pedido</button>
-      <form class="form" id="delForm" novalidate>
-        <div class="field"><label for="dName" data-i="fName">Nombre</label><input id="dName" autocomplete="name" required><span class="err" data-i="eReq">Este campo es necesario.</span></div>
-        <div class="field"><label for="dPhone" data-i="fPhone">Teléfono</label><input id="dPhone" type="tel" autocomplete="tel" inputmode="tel" required><span class="err" data-i="ePhone">Escribe un número de teléfono válido.</span></div>
-        <div class="field"><label for="dZone" data-i="fZone">Zona</label><select id="dZone" required></select><span class="err" data-i="eZone">Elige tu zona.</span></div>
-        <div class="field"><label for="dAddr" data-i="fAddr">Dirección</label><input id="dAddr" autocomplete="street-address" required><span class="err" data-i="eReq">Este campo es necesario.</span></div>
-        <div class="field"><label for="dRef" data-i="fRef">Referencia (opcional)</label><input id="dRef"></div>
-        <fieldset class="fieldset"><legend data-i="fWhen">¿Cuándo?</legend>
-          <div class="radios" id="whenR">
-            <label><input type="radio" name="when" value="asap" checked><span data-i="asap">Lo antes posible</span></label>
-            <label><input type="radio" name="when" value="later"><span data-i="later">Programar</span></label>
-          </div>
-        </fieldset>
-        <div class="field" id="laterBox" hidden><label for="dTime" data-i="fTime">Hora</label><input id="dTime" type="time"><span class="err" data-i="eReq">Este campo es necesario.</span></div>
-        <fieldset class="fieldset"><legend data-i="fPay">Pago</legend>
-          <div class="radios">
-            <label><input type="radio" name="pay" value="cash" checked><span data-i="payCash">Efectivo</span></label>
-            <label><input type="radio" name="pay" value="card"><span data-i="payCard">Tarjeta al recibir</span></label>
-            <label><input type="radio" name="pay" value="transfer"><span data-i="payTransfer">Transferencia</span></label>
-          </div>
-        </fieldset>
-        <div class="field"><label for="dNote" data-i="fNoteOrder">Nota para la cocina (opcional)</label><textarea id="dNote"></textarea></div>
-      </form>
-      <p class="sent" id="sent"></p>
-    </div>
-    <div class="dfoot">
-      <div class="sum"><span data-i="subtotal">Subtotal</span><span id="subB"></span></div>
-      <div class="sum"><span data-i="delivery">Envío</span><span id="fee"></span></div>
-      <div class="sum total"><span data-i="total">Total</span><span class="price" id="tot"></span></div>
-      <a class="pill solid wide" id="sendOrder" href="#" target="_blank" rel="noopener" data-i="sendOrder">Enviar pedido por WhatsApp</a>
-      <p class="vault-line"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10.5 11V9.6a1.5 1.5 0 0 1 3 0V11"/></svg><span data-ih="vaultLine">Brinco no guarda tu tarjeta. La protegen <b>AZUL</b>, <b>CardNet</b> o <b>MIO</b>.</span></p>
-      <button class="pill ghost wide" type="button" id="copyOrder" data-i="copyOrder">Copiar pedido</button>
     </div>
   </div>
 </aside>
@@ -612,7 +589,6 @@ footer .fvault{flex-basis:100%;color:var(--cream-3)}footer .fvault svg{color:var
   ];
   var SHEETCLIP = { croissant: ['croissant', '50% 55%'], danish: ['danish', '50% 50%'], cinnamon: ['cinnamon-roll', '50% 45%'], millefeuille: ['mille-feuille', '50% 45%'], cake: ['chocolate-cake', '50% 45%'],
     benedict: ['breakfast', '50% 48%'], cappuccino: ['coffee', '50% 45%'], sourdough: ['bread', '50% 50%'], croque: ['savory', '50% 58%'], chinola: ['drinks', '60% 45%'] };
-  var ZONES = [['Piantini / Naco', 150], ['Bella Vista / Evaristo Morales', 150], ['Serrallés / Paraíso', 150], ['Gazcue / Zona Colonial', 200], ['Arroyo Hondo / Los Prados', 250], [null, null]];
   var S = {
     es: { tag: 'Panadería · Café', navMenu: 'Menú', navCarta: 'Carta completa', navReserve: 'Reservar', navAbout: 'Nosotros', bag: 'Pedido',
       heroEyebrow: 'Desayunos · Café · Panes · Repostería', heroH1: 'La carta pasa <em>sus propias</em> páginas.', heroLede: 'Todo hecho en casa, cada mañana. Desliza para pasar las páginas de la carta y pide a domicilio desde cualquier capítulo.', cue: 'Desliza para abrir la carta',
@@ -620,17 +596,16 @@ footer .fvault{flex-basis:100%;color:var(--cream-3)}footer .fvault svg{color:var
       obEyebrow: 'Tu pedido', obEmptyT: 'Todavía no has <em>elegido</em> nada.', obEmptyS: 'Pasa las páginas de la carta y toca “+” en lo que te provoque.', obFullT: 'Tu pedido está <em>listo</em>.', obBtnEmpty: 'Volver a la carta', obBtn: 'Ordenar delivery',
       piece: 'artículo', pieces: 'artículos', cartaEyebrow: 'La carta completa', cartaH2: 'Todo en una sola vista', cartaNote: 'Precios de ejemplo en pesos dominicanos. V vegano · VEG vegetariano · SG sin gluten.',
       resEyebrow: 'Comer aquí', resH2: 'Reserva una <em>mesa</em>.', resBody: 'Para desayunos largos, cumpleaños o una reunión con café. Te confirmamos por WhatsApp.', resSend: 'Pedir reserva por WhatsApp',
-      fDate: 'Fecha', fTime: 'Hora', fPeople: 'Personas', fName: 'Nombre', fPhone: 'Teléfono', fNote: 'Nota (opcional)', fZone: 'Zona', fAddr: 'Dirección', fRef: 'Referencia (opcional)', fWhen: '¿Cuándo?', asap: 'Lo antes posible', later: 'Programar', fPay: 'Pago', payCash: 'Efectivo', payCard: 'Tarjeta al recibir', payTransfer: 'Transferencia', fNoteOrder: 'Nota para la cocina (opcional)',
-      eReq: 'Este campo es necesario.', ePhone: 'Escribe un número de teléfono válido.', eZone: 'Elige tu zona.', zonePick: 'Elige tu zona', zoneOther: 'Otra zona (te confirmamos el envío)',
+      fDate: 'Fecha', fTime: 'Hora', fPeople: 'Personas', fName: 'Nombre', fPhone: 'Teléfono', fNote: 'Nota (opcional)',
+      eReq: 'Este campo es necesario.', ePhone: 'Escribe un número de teléfono válido.',
       abEyebrow: 'Nosotros', abQuote: 'Los hornos se prenden antes del amanecer. La puerta abre cuando los croissants están listos.', abBody: '[Un párrafo corto sobre los panaderos, la harina y la mantequilla que usan, y dónde queda el local.] Todo se hace en casa en tandas pequeñas, así que lo mejor se acaba temprano.',
       dHours: 'Horario', dBreakfast: 'Desayunos', dBreakfastV: 'Hasta las 12:00 m.', dAddress: 'Dirección',
       vaultFoot: 'Brinco no guarda tarjetas. Tus datos de pago quedan protegidos por el procesador certificado PCI DSS: <b>AZUL</b>, <b>CardNet</b> o <b>MIO</b>.', vaultLine: 'Brinco no guarda tu tarjeta. La protegen <b>AZUL</b>, <b>CardNet</b> o <b>MIO</b>.',
-      dTitle: 'Tu pedido', empty: 'Todavía no has agregado nada. Pasa las páginas de la carta y toca “+”.', subtotal: 'Subtotal', feeLater: 'El envío se calcula según tu zona en el próximo paso.', toCheckout: 'Continuar con la entrega', backCart: '← Volver al pedido',
-      delivery: 'Envío', total: 'Total', toConfirm: 'Por confirmar', sendOrder: 'Enviar pedido por WhatsApp', copyOrder: 'Copiar pedido', copied: 'Pedido copiado', copyFail: 'No se pudo copiar. Selecciona el texto en WhatsApp manualmente.',
-      sentMsg: 'Se abrió WhatsApp con tu pedido. Si no se abrió, toca “Copiar pedido” y envíalo al [NÚMERO].', fixErr: 'Revisa los campos marcados.',
+      dTitle: 'Tu pedido', empty: 'Todavía no has agregado nada. Pasa las páginas de la carta y toca “+”.', subtotal: 'Subtotal', feeLater: 'Elige delivery o recoger y paga en el próximo paso.', toCheckout: 'Finalizar pedido', navOrders: 'Mis pedidos', lgSec: 'Seguridad', lgPriv: 'Privacidad', lgTerms: 'Términos',
+      fixErr: 'Revisa los campos marcados.',
       add: 'Agregar', added: 'agregado', each: 'c/u', close: 'Cerrar', less: 'Menos', more: 'Más', addTo: 'Agregar', remove: 'Quitar uno', addOne: 'Agregar uno',
       tag_v: 'V', tag_veg: 'VEG', tag_sg: 'SG', tag_hoy: 'Hoy', tagsLong: { v: 'Vegano', veg: 'Vegetariano', sg: 'Sin gluten', hoy: 'Especial de hoy' },
-      waHi: '¡Hola Hojaldre! Quiero pedir a domicilio:', waName: 'Nombre', waPhone: 'Teléfono', waZone: 'Zona', waAddr: 'Dirección', waRef: 'Referencia', waWhen: 'Entrega', waPay: 'Pago', waNote: 'Nota', waSub: 'Subtotal', waFee: 'Envío', waTot: 'Total',
+      waName: 'Nombre', waPhone: 'Teléfono', waNote: 'Nota',
       waRes: '¡Hola Hojaldre! Quisiera reservar una mesa:', waDate: 'Fecha', waTime: 'Hora', waPeople: 'Personas', tabsLabel: 'Capítulos', cover: 'Portada', coverMenu: 'La carta', openMenu: 'Abrir la carta' },
     en: { tag: 'Bakery · Café', navMenu: 'Menu', navCarta: 'Full menu', navReserve: 'Reserve', navAbout: 'About', bag: 'Order',
       heroEyebrow: 'Breakfast · Coffee · Bread · Pastry', heroH1: 'The menu turns <em>its own</em> pages.', heroLede: 'Everything made in-house, every morning. Scroll to turn the pages and order delivery from any chapter.', cue: 'Scroll to open the menu',
@@ -638,17 +613,16 @@ footer .fvault{flex-basis:100%;color:var(--cream-3)}footer .fvault svg{color:var
       obEyebrow: 'Your order', obEmptyT: 'Nothing <em>picked</em> yet.', obEmptyS: 'Turn the menu pages and tap “+” on anything you like.', obFullT: 'Your order is <em>ready</em>.', obBtnEmpty: 'Back to the menu', obBtn: 'Order delivery',
       piece: 'item', pieces: 'items', cartaEyebrow: 'The full menu', cartaH2: 'Everything at a glance', cartaNote: 'Example prices in Dominican pesos. V vegan · VEG vegetarian · SG gluten-free.',
       resEyebrow: 'Dine in', resH2: 'Reserve a <em>table</em>.', resBody: 'For long breakfasts, birthdays or a meeting over coffee. We confirm on WhatsApp.', resSend: 'Request on WhatsApp',
-      fDate: 'Date', fTime: 'Time', fPeople: 'Guests', fName: 'Name', fPhone: 'Phone', fNote: 'Note (optional)', fZone: 'Area', fAddr: 'Address', fRef: 'Landmark (optional)', fWhen: 'When?', asap: 'As soon as possible', later: 'Schedule', fPay: 'Payment', payCash: 'Cash', payCard: 'Card on delivery', payTransfer: 'Bank transfer', fNoteOrder: 'Note for the kitchen (optional)',
-      eReq: 'This field is required.', ePhone: 'Enter a valid phone number.', eZone: 'Choose your area.', zonePick: 'Choose your area', zoneOther: 'Other area (we confirm the fee)',
+      fDate: 'Date', fTime: 'Time', fPeople: 'Guests', fName: 'Name', fPhone: 'Phone', fNote: 'Note (optional)',
+      eReq: 'This field is required.', ePhone: 'Enter a valid phone number.',
       abEyebrow: 'About', abQuote: 'The ovens go on before sunrise. The doors open when the croissants are ready.', abBody: '[A short paragraph about the bakers, the flour and butter they use, and where the shop is.] Everything is made in-house in small batches, so the best pieces go early.',
       dHours: 'Hours', dBreakfast: 'Breakfast', dBreakfastV: 'Until 12:00 pm', dAddress: 'Address',
       vaultFoot: 'Brinco doesn’t store cards. Your payment details are protected by the PCI DSS–certified processor: <b>AZUL</b>, <b>CardNet</b> or <b>MIO</b>.', vaultLine: 'Brinco doesn’t store your card. It’s protected by <b>AZUL</b>, <b>CardNet</b> or <b>MIO</b>.',
-      dTitle: 'Your order', empty: 'Nothing here yet. Turn the menu pages and tap “+”.', subtotal: 'Subtotal', feeLater: 'Delivery is calculated by area in the next step.', toCheckout: 'Continue to delivery', backCart: '← Back to your order',
-      delivery: 'Delivery', total: 'Total', toConfirm: 'To confirm', sendOrder: 'Send order on WhatsApp', copyOrder: 'Copy order', copied: 'Order copied', copyFail: 'Couldn’t copy. Please copy the text manually.',
-      sentMsg: 'WhatsApp opened with your order. If it didn’t, tap “Copy order” and send it to [NUMBER].', fixErr: 'Check the highlighted fields.',
+      dTitle: 'Your order', empty: 'Nothing here yet. Turn the menu pages and tap “+”.', subtotal: 'Subtotal', feeLater: 'Choose delivery or pickup and pay in the next step.', toCheckout: 'Checkout', navOrders: 'My orders', lgSec: 'Security', lgPriv: 'Privacy', lgTerms: 'Terms',
+      fixErr: 'Check the highlighted fields.',
       add: 'Add', added: 'added', each: 'each', close: 'Close', less: 'Less', more: 'More', addTo: 'Add', remove: 'Remove one', addOne: 'Add one',
       tag_v: 'V', tag_veg: 'VEG', tag_sg: 'SG', tag_hoy: 'Today', tagsLong: { v: 'Vegan', veg: 'Vegetarian', sg: 'Gluten-free', hoy: 'Today’s special' },
-      waHi: 'Hi Hojaldre! I’d like to order delivery:', waName: 'Name', waPhone: 'Phone', waZone: 'Area', waAddr: 'Address', waRef: 'Landmark', waWhen: 'Delivery', waPay: 'Payment', waNote: 'Note', waSub: 'Subtotal', waFee: 'Delivery', waTot: 'Total',
+      waName: 'Name', waPhone: 'Phone', waNote: 'Note',
       waRes: 'Hi Hojaldre! I’d like to reserve a table:', waDate: 'Date', waTime: 'Time', waPeople: 'Guests', tabsLabel: 'Chapters', cover: 'Cover', coverMenu: 'The menu', openMenu: 'Open the menu' }
   };
 
@@ -737,7 +711,7 @@ footer .fvault{flex-basis:100%;color:var(--cream-3)}footer .fvault svg{color:var
     save(); renderCart();
     var b = $('badge'); b.classList.remove('bump'); void b.offsetWidth; b.classList.add('bump');
     avisoAgregado(nm(id));
-    toast(nm(id) + ' ' + t('added') + ' · ' + count() + ' ' + (count() === 1 ? t('piece') : t('pieces')));
+    if (window.Brinco && Brinco.track) Brinco.track('carrito', { producto: I[id].es[0], total: subtotal() });
   }
   // aviso junto al botón del pedido (la barra de arriba queda fija al bajar)
   var headBar = document.querySelector('body > header'), cartNote = document.createElement('div'), cartNoteT;
@@ -766,11 +740,10 @@ footer .fvault{flex-basis:100%;color:var(--cream-3)}footer .fvault svg{color:var
         '<div class="qty"><button type="button" data-dec="' + i + '" aria-label="' + esc(t('remove') + ' ' + nm(l.id)) + '">−</button><span>' + l.q + '</span><button type="button" data-inc="' + i + '" aria-label="' + esc(t('addOne') + ' ' + nm(l.id)) + '">+</button></div>';
       ul.appendChild(li);
     });
-    $('subA').textContent = rd(sub); $('subB').textContent = rd(sub);
+    $('subA').textContent = rd(sub);
     /* order band */
     if (n) { $('obTitle').innerHTML = t('obFullT'); $('obSum').textContent = n + ' ' + (n === 1 ? t('piece') : t('pieces')) + ' · ' + rd(sub); $('orderBtn').textContent = t('obBtn') + ' · ' + rd(sub); }
     else { $('obTitle').innerHTML = t('obEmptyT'); $('obSum').textContent = t('obEmptyS'); $('orderBtn').textContent = t('obBtnEmpty'); }
-    renderTotals();
   }
   $('lines').addEventListener('click', function (e) {
     var b = e.target.closest('button'); if (!b) return;
@@ -849,61 +822,30 @@ footer .fvault{flex-basis:100%;color:var(--cream-3)}footer .fvault svg{color:var
     if ($('sheet').hidden) $('scrim').hidden = true;
     if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
-  function showView(v) { $('vCart').hidden = v !== 'cart'; $('vCheck').hidden = v !== 'check'; }
+  function showView() { $('vCart').hidden = false; }
   $('openCart').addEventListener('click', openCart);
   $('closeCart').addEventListener('click', closeCart);
   $('scrim').addEventListener('click', function () { if (!$('sheet').hidden) closeSheet(); else closeCart(); });
   document.addEventListener('keydown', function (e) { if (e.key !== 'Escape') return; if (!$('sheet').hidden) closeSheet(); else if ($('drawer').classList.contains('open')) closeCart(); });
-  $('toCheckout').addEventListener('click', function () { if (count()) { showView('check'); renderTotals(); $('dName').focus(); } });
-  $('backCart').addEventListener('click', function () { showView('cart'); });
+  $('toCheckout').addEventListener('click', function () {
+    if (!count()) return;
+    if (window.Brinco && Brinco.checkout) Brinco.checkout();
+  });
   $('orderBtn').addEventListener('click', function () { if (count()) openCart(); else go(1); });
 
-  function buildZones() {
-    var sel = $('dZone'), v = sel.value;
-    sel.innerHTML = '<option value="">' + esc(t('zonePick')) + '</option>' + ZONES.map(function (z, i) { return '<option value="' + i + '">' + esc(z[0] ? z[0] + ' · ' + rd(z[1]) : t('zoneOther')) + '</option>'; }).join('');
-    sel.value = v;
-  }
-  function fee() { var v = $('dZone').value; if (v === '') return undefined; return ZONES[+v][1]; }
-  function radio(name) { var r = document.querySelector('input[name="' + name + '"]:checked'); return r ? r.value : ''; }
-  function payLabel() { return t({ cash: 'payCash', card: 'payCard', transfer: 'payTransfer' }[radio('pay')]); }
-  function orderText() {
-    var f = fee(), sub = subtotal(), lines = cart.map(function (l) { return '• ' + l.q + ' × ' + nm(l.id) + (optText(l) ? ' (' + optText(l) + ')' : '') + ' — ' + rd(unit(l) * l.q); });
-    var when = radio('when') === 'later' ? ($('dTime').value || '—') : t('asap');
-    var zone = $('dZone').value === '' ? '—' : (ZONES[+$('dZone').value][0] || t('zoneOther'));
-    return [t('waHi'), ''].concat(lines).concat(['', t('waSub') + ': ' + rd(sub), t('waFee') + ': ' + (f == null ? t('toConfirm') : rd(f)), t('waTot') + ': ' + rd(sub + (f || 0)) + (f == null ? ' + ' + t('waFee').toLowerCase() : ''), '',
-      t('waName') + ': ' + $('dName').value, t('waPhone') + ': ' + $('dPhone').value, t('waZone') + ': ' + zone, t('waAddr') + ': ' + $('dAddr').value + ($('dRef').value ? ' (' + t('waRef') + ': ' + $('dRef').value + ')' : ''),
-      t('waWhen') + ': ' + when, t('waPay') + ': ' + payLabel()]).concat($('dNote').value ? [t('waNote') + ': ' + $('dNote').value] : []).join('\n');
-  }
-  function renderTotals() {
-    var f = fee(), sub = subtotal();
-    $('fee').textContent = f === undefined ? '—' : (f === null ? t('toConfirm') : rd(f));
-    $('tot').textContent = rd(sub + (f || 0));
-    $('sendOrder').href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(orderText());
-  }
   function mark(id, bad) { var f = $(id).closest('.field'); f.classList.toggle('bad', bad); $(id).setAttribute('aria-invalid', bad ? 'true' : 'false'); return bad; }
   function phoneOk(v) { return v.replace(/\D/g, '').length >= 7; }
-  function validDelivery() {
-    var bad = false;
-    bad = mark('dName', !$('dName').value.trim()) || bad;
-    bad = mark('dPhone', !phoneOk($('dPhone').value)) || bad;
-    bad = mark('dZone', $('dZone').value === '') || bad;
-    bad = mark('dAddr', !$('dAddr').value.trim()) || bad;
-    if (radio('when') === 'later') bad = mark('dTime', !$('dTime').value) || bad;
-    return !bad;
-  }
-  var triedDel = false, triedRes = false;
-  $('delForm').addEventListener('input', function () { if (triedDel) validDelivery(); renderTotals(); });
-  $('delForm').addEventListener('change', function () { $('laterBox').hidden = radio('when') !== 'later'; if (triedDel) validDelivery(); renderTotals(); });
-  $('sendOrder').addEventListener('click', function (e) {
-    if (!count()) { e.preventDefault(); return; }
-    triedDel = true;
-    if (!validDelivery()) { e.preventDefault(); toast(t('fixErr')); var f = document.querySelector('#delForm .bad input, #delForm .bad select'); if (f) f.focus(); return; }
-    renderTotals(); var s = $('sent'); s.textContent = t('sentMsg'); s.classList.add('show');
-  });
-  $('copyOrder').addEventListener('click', function () {
-    var txt = orderText();
-    try { navigator.clipboard.writeText(txt).then(function () { toast(t('copied')); }, function () { toast(t('copyFail')); }); } catch (e) { toast(t('copyFail')); }
-  });
+  var triedRes = false;
+
+  /* ======================= Brinco Kit: adaptador del carrito ======================= */
+  function chapterPoster(id) { for (var k = 0; k < CH.length; k++) if (CH[k].items.indexOf(id) >= 0) return '/videos/' + CH[k].clip + '-poster.jpg'; return '/images/croissant.jpg'; }
+  function itemImg(id) { return I[id].img ? '/' + I[id].img : (SHEETCLIP[id] ? '/videos/' + SHEETCLIP[id][0] + '-poster.jpg' : chapterPoster(id)); }
+  window.BrincoCart = {
+    items: function () { return cart.map(function (l) { return { name: I[l.id].es[0], detail: Object.keys(l.o || {}).map(function (k) { return OPTS[k].v[l.o[k]][0]; }).join(' · '), qty: l.q, unit: unit(l), img: itemImg(l.id) }; }); },
+    total: function () { return subtotal(); },
+    clear: function () { cart = []; save(); renderCart(); },
+    close: function () { if ($('drawer').classList.contains('open')) closeCart(); }
+  };
 
   /* ======================= reservations ======================= */
   function resText() {
@@ -929,7 +871,8 @@ footer .fvault{flex-basis:100%;color:var(--cream-3)}footer .fvault svg{color:var
     document.querySelectorAll('[data-ih]').forEach(function (el) { el.innerHTML = t(el.getAttribute('data-ih')); });
     document.querySelectorAll('[data-ia]').forEach(function (el) { el.setAttribute('aria-label', t(el.getAttribute('data-ia'))); });
     document.querySelectorAll('[data-lang]').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-lang') === lang ? 'true' : 'false'); });
-    buildBook(); buildCarta(); buildZones(); renderCart(); syncRes();
+    buildBook(); buildCarta(); renderCart(); syncRes();
+    if (window.Brinco && Brinco.setLang) Brinco.setLang(lang);
     if (!$('sheet').hidden && cur.id) openSheet(cur.id);
     paint(curP < 0 ? target : curP);
   }
@@ -1037,6 +980,7 @@ footer .fvault{flex-basis:100%;color:var(--cream-3)}footer .fvault svg{color:var
   $('next').addEventListener('click', function () { go(Math.round(target) + 1); });
 
   applyLang();
+  document.addEventListener('DOMContentLoaded', function () { if (window.Brinco && Brinco.ready) Brinco.ready(function () { if (Brinco.setLang) Brinco.setLang(lang); }); });
   readScroll();
   requestAnimationFrame(loop);
 })();

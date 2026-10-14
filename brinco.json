@@ -1,0 +1,29 @@
+{
+  "negocio": "hojaldre",
+  "nombre": "Hojaldre",
+  "nombreLegal": "Hojaldre Panadería · Café",
+  "dominio": "hojaldre.sandscap.com.do",
+  "logo": "",
+  "logoBlanco": "",
+  "favicon": "/images/favicon.png",
+  "color": "#8a6534",
+  "colorTexto": "#1a120c",
+  "colorFondo": "#f4ecdf",
+  "fuenteTitulos": "Cormorant Garamond",
+  "fuenteTexto": "Karla",
+  "googleFonts": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&family=Karla:wght@400;500;600&display=swap",
+  "prefijoOrden": "HJ",
+  "moneda": "RD$",
+  "envio": 150,
+  "entrega": { "delivery": true, "pickup": true, "deliveryMin": 30, "deliveryMax": 45, "pickupMin": 15 },
+  "sectores": ["Piantini", "Naco", "Bella Vista", "Evaristo Morales", "Serrallés", "Paraíso", "Los Cacicazgos", "Mirador Sur", "La Esperilla", "Gazcue", "Zona Colonial", "Arroyo Hondo", "Los Prados", "Renacimiento"],
+  "tienda": { "direccion": "Av. Sarasota 39, Bella Vista", "ciudad": "Santo Domingo", "mapa": "https://maps.google.com/?q=Av.+Sarasota+39,+Bella+Vista,+Santo+Domingo" },
+  "producto": { "singular": "pieza", "plural": "piezas" },
+  "etapas": {
+    "preparando": "Preparando tu pedido",
+    "coccion": "Saliendo del horno",
+    "coccionTexto": "Tus piezas salen del horno y las empacamos calientes. Ya casi."
+  },
+  "contacto": { "direccion": "[Dirección del local]", "telefono": "[Teléfono / WhatsApp]", "correo": "[Correo]", "instagram": "[@usuario]" },
+  "idioma": "es"
+}

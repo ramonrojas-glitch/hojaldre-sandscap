@@ -842,7 +842,7 @@ footer .fvault .bk-fvault{margin:0;max-width:none;justify-content:flex-start;opa
   function chapterPoster(id) { for (var k = 0; k < CH.length; k++) if (CH[k].items.indexOf(id) >= 0) return '/videos/' + CH[k].clip + '-poster.jpg'; return '/images/croissant.jpg'; }
   function itemImg(id) { return I[id].img ? '/' + I[id].img : (SHEETCLIP[id] ? '/videos/' + SHEETCLIP[id][0] + '-poster.jpg' : chapterPoster(id)); }
   window.BrincoCart = {
-    items: function () { return cart.map(function (l) { return { name: nm(l.id), detail: optText(l), qty: l.q, unit: unit(l), img: itemImg(l.id) }; }); },
+    items: function () { return cart.map(function (l) { return { name: nm(l.id), detail: optText(l), qty: l.q, unit: unit(l), img: itemImg(l.id), sku: { p: l.id, x: Object.keys(l.o).map(function (k) { return k + ':' + l.o[k]; }) } }; }); },
     total: function () { return subtotal(); },
     clear: function () { cart = []; save(); renderCart(); },
     close: function () { if ($('drawer').classList.contains('open')) closeCart(); }
